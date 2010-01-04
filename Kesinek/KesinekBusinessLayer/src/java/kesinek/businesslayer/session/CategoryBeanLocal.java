@@ -9,6 +9,7 @@ package kesinek.businesslayer.session;
 import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Category;
+import kesinek.businesslayer.entities.CategoryAttribute;
 
 /**
  * Handles BL for Category entity class
@@ -22,7 +23,37 @@ import kesinek.businesslayer.entities.Category;
  */
 @Local
 public interface CategoryBeanLocal {
-    
+
+    /**
+     * Will add new category attribute to the system
+     * 
+     * @param attribute
+     */
+    void addCategoryAttribute(CategoryAttribute attribute);
+
+    /**
+     * Will add new category attribute to the given category
+     *
+     * @param category
+     * @param attribute
+     */
+    void addCategoryAttribute(Category category, CategoryAttribute attribute);
+
+    /**
+     * Will remove a category attribute from given category
+     *
+     * @param category
+     * @param attribute
+     */
+    void removeCategoryAttribute(Category category, CategoryAttribute attribute);
+
+    /**
+     * Will remove a category attribute from the system
+     *
+     * @param attribute
+     */
+    void removeCategoryAttribute(CategoryAttribute attribute);
+
     /**
      * Will add new category to the system
      *
@@ -58,5 +89,13 @@ public interface CategoryBeanLocal {
      * @param category
      */
     public void updateCategory(Category category);
+
+    /**
+     * Will find all attributes of given category
+     *
+     * @param categoryId
+     * @return List<CategoryAttribute>
+     */
+    public List<CategoryAttribute> findAllCategoryAttributes(int categoryId);
     
 }

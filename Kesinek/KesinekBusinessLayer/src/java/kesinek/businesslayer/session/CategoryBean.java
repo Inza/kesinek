@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Category;
+import kesinek.businesslayer.entities.CategoryAttribute;
 
 @Stateless
 public class CategoryBean implements CategoryBeanLocal {
@@ -30,7 +31,7 @@ public class CategoryBean implements CategoryBeanLocal {
     }
 
     public void updateCategory(Category category) {
-        em.createNamedQuery("Employee.update")
+        em.createNamedQuery("Category.update")
                 .setParameter("name", category.getName())
                 .setParameter("description", category.getDescription())
                 .setParameter("categoryID", category.getCategoryID())
@@ -45,5 +46,38 @@ public class CategoryBean implements CategoryBeanLocal {
 
     public Category findCategoryByID(int id) {
         return em.getReference(Category.class, id);
+    }
+
+    public void addCategoryAttribute(CategoryAttribute attribute) {
+        em.persist(attribute);
+    }
+
+    public void addCategoryAttribute(Category category, CategoryAttribute attribute) {
+        em.persist(attribute.setCategoryID(category));
+    }
+
+    public void removeCategoryAttribute(Category category, CategoryAttribute attribute) {
+        attribute = em.merge(attribute.setCategoryID(category));
+        em.remove(attribute);
+    }
+
+    public void removeCategoryAttribute(CategoryAttribute attribute) {
+        attribute = em.merge(attribute);
+        em.remove(attribute);
+    }
+
+    public void updateCategoryAttribute(CategoryAttribute attribute) {
+        em.createNamedQuery("CategoryAttribute.update")
+                .setParameter("name", attribute.getName())
+                .setParameter("description", attribute.getDescription())
+                .setParameter("categoryID", attribute.getCategoryID())
+                .setParameter("categoryAttributeID", attribute.getCategoryAttributeID())
+        .executeUpdate();
+        em.merge(attribute);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CategoryAttribute> findAllCategoryAttributes(int categoryId) {
+        return em.createNamedQuery("Category.findAllAttributes").setParameter("categoryID", categoryId).getResultList();
     }
 }
