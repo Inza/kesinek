@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -20,8 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * CategoryAttribute entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 13:30
+ * - finalized: 4. 1. 2010, 13:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "CategoryAttribute", catalog = "kesinek", schema = "")
@@ -62,32 +61,60 @@ public class CategoryAttribute implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param description 
+     * @return CategoryAttribute
+     */
+    public CategoryAttribute setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param name 
+     * @return CategoryAttribute
+     */
+    public CategoryAttribute setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getCategoryAttributeID() {
         return categoryAttributeID;
     }
 
-    public void setCategoryAttributeID(Integer categoryAttributeID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param categoryAttributeID 
+     * @return CategoryAttribute
+     */
+    public CategoryAttribute setCategoryAttributeID(Integer categoryAttributeID) {
         this.categoryAttributeID = categoryAttributeID;
+        return this;
     }
 
     public Category getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(Category categoryID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param categoryID 
+     * @return CategoryAttribute
+     */
+    public CategoryAttribute setCategoryID(Category categoryID) {
         this.categoryID = categoryID;
+        return this;
     }
 
     @Override
