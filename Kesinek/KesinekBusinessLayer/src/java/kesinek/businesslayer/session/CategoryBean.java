@@ -1,6 +1,9 @@
 /*
  * This file describes Category management session bean class.
  *
+ * - reviewed: 4. 1. 2010, 12:34
+ * - finalized: 4. 1. 2010, 12:34
+ *
  * @author Tomáš Jukin
  */
 package kesinek.businesslayer.session;

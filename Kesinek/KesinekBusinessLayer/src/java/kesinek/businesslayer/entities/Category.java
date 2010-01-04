@@ -18,6 +18,9 @@ import javax.persistence.Table;
 /**
  * Category entity class
  *
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
  * @author Tomáš Jukin
  */
 @Entity

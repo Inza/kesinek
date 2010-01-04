@@ -15,11 +15,14 @@ import kesinek.businesslayer.entities.Category;
  *
  * This bean will perform basic I/O operations with categories (EC Category) in the system
  *
+ * - reviewed: 4. 1. 2010, 12:33
+ * - finalized: 4. 1. 2010, 12:33
+ *
  * @author Tomáš Jukin
  */
 @Local
 public interface CategoryBeanLocal {
-
+    
     /**
      * Will add new category to the system
      *
