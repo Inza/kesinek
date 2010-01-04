@@ -64,6 +64,12 @@ public class Category implements Serializable {
         return description;
     }
 
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param description
+     * @return Category
+     */
     public Category setDescription(String description) {
         this.description = description;
         return this;
@@ -73,6 +79,12 @@ public class Category implements Serializable {
         return name;
     }
 
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param name
+     * @return Category
+     */
     public Category setName(String name) {
         this.name = name;
         return this;
@@ -82,8 +94,15 @@ public class Category implements Serializable {
         return categoryID;
     }
 
-    public void setCategoryID(Integer categoryID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param categoryID
+     * @return Category
+     */
+    public Category setCategoryID(Integer categoryID) {
         this.categoryID = categoryID;
+        return this;
     }
 
     public Collection<CategoryAttribute> getCategoryAttributeCollection() {
