@@ -1,5 +1,10 @@
 /*
  * This file describes Basket management session bean class.
+ *
+ * - reviewed: 4. 1. 2010, 13:17
+ * - finalized: 4. 1. 2010, 13:17
+ *
+ * @author Tomáš Jukin
  */
 
 package kesinek.businesslayer.session;
@@ -9,32 +14,26 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Basket;
+import kesinek.businesslayer.entities.IsInBasket;
 import kesinek.businesslayer.entities.ProductItem;
 
-/**
- * Handles BL for ProductItem and Basket entity classes
- *
- * This bean will perform basic I/O operations with products (EC ProductItem) in the product baskets (EC Basket)
- *
- * @author Tomáš Jukin
- */
 @Stateless
 public class BasketBean implements BasketBeanLocal {
 
     @PersistenceContext
     private EntityManager em;
-
-    /**
-     * Will add desired product to desired basket
-     *
-     * @param product
-     * @param basket
-     */
+    
     public void addProductToBasket(ProductItem product, Basket basket) {
+        em.persist(new IsInBasket().setBasketID(basket).setProductItemID(product));
     }
-
     
     public void removeProductFromBasket(ProductItem product, Basket basket) {
+        IsInBasket relation = em.merge(
+                new IsInBasket()
+                    .setBasketID(basket)
+                    .setProductItemID(product)
+        );
+        em.remove(relation);
     }
 
     public void addBasket(Basket basket) {
@@ -56,7 +55,11 @@ public class BasketBean implements BasketBeanLocal {
     }
 
     public void updateBasket(Basket basket) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.createNamedQuery("Basket.update")
+                .setParameter("userID", basket.getUserID())
+                .setParameter("basketID", basket.getBasketID())
+        .executeUpdate();
+        em.merge(basket);
     }
     
 }

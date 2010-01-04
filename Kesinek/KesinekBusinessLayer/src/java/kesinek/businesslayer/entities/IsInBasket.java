@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -20,8 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * Basket - ProductItem relation entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 13:17
+ * - finalized: 4. 1. 2010, 13:17
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "isInBasket", catalog = "kesinek", schema = "")
@@ -53,24 +52,45 @@ public class IsInBasket implements Serializable {
         return isInBasketID;
     }
 
-    public void setIsInBasketID(Integer isInBasketID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInBasketID
+     * @return IsInBasket
+     */
+    public IsInBasket setIsInBasketID(Integer isInBasketID) {
         this.isInBasketID = isInBasketID;
+        return this;
     }
 
     public Basket getBasketID() {
         return basketID;
     }
 
-    public void setBasketID(Basket basketID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param basketID
+     * @return IsInBasket
+     */
+    public IsInBasket setBasketID(Basket basketID) {
         this.basketID = basketID;
+        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(ProductItem productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID 
+     * @return IsInBasket
+     */
+    public IsInBasket setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     @Override

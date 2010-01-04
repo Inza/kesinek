@@ -20,11 +20,15 @@ import javax.persistence.Table;
 /**
  * Basket entity class
  *
+ * - reviewed: 4. 1. 2010, 13:17
+ * - finalized: 4. 1. 2010, 13:17
+ *
  * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Basket", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "Basket.update", query = "UPDATE basket SET userID = ':userID' WHERE basketID = ':basketID'"),
     @NamedQuery(name = "Basket.findAll", query = "SELECT b FROM Basket b"),
     @NamedQuery(name = "Basket.findByBasketID", query = "SELECT b FROM Basket b WHERE b.basketID = :basketID")})
 public class Basket implements Serializable {
@@ -51,24 +55,39 @@ public class Basket implements Serializable {
         return basketID;
     }
 
-    public void setBasketID(Integer basketID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param basketID
+     * @return Basket
+     */
+    public Basket setBasketID(Integer basketID) {
         this.basketID = basketID;
+        return this;
     }
 
     public User getUserID() {
         return userID;
     }
 
-    public void setUserID(User userID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param userID 
+     * @return Basket
+     */
+    public Basket setUserID(User userID) {
         this.userID = userID;
+        return this;
     }
 
     public Collection<IsInBasket> getIsInBasketCollection() {
         return isInBasketCollection;
     }
 
-    public void setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
+    public Basket setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
         this.isInBasketCollection = isInBasketCollection;
+        return this;
     }
 
     @Override
