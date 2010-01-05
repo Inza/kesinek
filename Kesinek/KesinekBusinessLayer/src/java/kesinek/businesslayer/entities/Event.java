@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -23,13 +18,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
+ * Event entity class
  *
- * @author inza
+ * - reviewed: 5. 1. 2010, 10:17
+ * - finalized: 5. 1. 2010, 10:17
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Event", catalog = "kesinek", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e"),
+    @NamedQuery(name = "Event.findByUserID", query = "SELECT e FROM Event e WHERE e.userID = :userID"),
     @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event e WHERE e.date = :date"),
     @NamedQuery(name = "Event.findByText", query = "SELECT e FROM Event e WHERE e.text = :text"),
     @NamedQuery(name = "Event.findByEventID", query = "SELECT e FROM Event e WHERE e.eventID = :eventID")})
@@ -68,32 +68,60 @@ public class Event implements Serializable {
         return date;
     }
 
-    public void setDate(Date date) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param date
+     * @return Event
+     */
+    public Event setDate(Date date) {
         this.date = date;
+        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param text
+     * @return Event
+     */
+    public Event setText(String text) {
         this.text = text;
+        return this;
     }
 
     public Integer getEventID() {
         return eventID;
     }
 
-    public void setEventID(Integer eventID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param eventID 
+     * @return Event
+     */
+    public Event setEventID(Integer eventID) {
         this.eventID = eventID;
+        return this;
     }
 
     public User getUserID() {
         return userID;
     }
 
-    public void setUserID(User userID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param userID 
+     * @return Event
+     */
+    public Event setUserID(User userID) {
         this.userID = userID;
+        return this;
     }
 
     @Override
