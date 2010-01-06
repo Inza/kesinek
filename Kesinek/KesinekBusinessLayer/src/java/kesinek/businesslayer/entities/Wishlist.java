@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -21,8 +16,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * Wishlist entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Wishlist", catalog = "kesinek", schema = "")
@@ -59,24 +58,45 @@ public class Wishlist implements Serializable {
         return wishlistID;
     }
 
-    public void setWishlistID(Integer wishlistID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param wishlistID 
+     * @return Wishlist
+     */
+    public Wishlist setWishlistID(Integer wishlistID) {
         this.wishlistID = wishlistID;
+        return this;
     }
 
     public int getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param userID  
+     * @return Wishlist
+     */
+    public Wishlist setUserID(int userID) {
         this.userID = userID;
+        return this;
     }
 
     public Collection<IsInWishlist> getIsInWishlistCollection() {
         return isInWishlistCollection;
     }
 
-    public void setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInWishlistCollection  
+     * @return Wishlist
+     */
+    public Wishlist setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
         this.isInWishlistCollection = isInWishlistCollection;
+        return this;
     }
 
     @Override
