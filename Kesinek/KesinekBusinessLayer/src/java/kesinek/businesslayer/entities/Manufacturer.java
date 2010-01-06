@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -17,8 +12,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * Manufacturer entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Manufacturer", catalog = "kesinek", schema = "")
@@ -53,16 +52,30 @@ public class Manufacturer implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param name   
+     * @return Manufacturer
+     */
+    public Manufacturer setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getManufacturerID() {
         return manufacturerID;
     }
 
-    public void setManufacturerID(Integer manufacturerID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param manufacturerID 
+     * @return Manufacturer
+     */
+    public Manufacturer setManufacturerID(Integer manufacturerID) {
         this.manufacturerID = manufacturerID;
+        return this;
     }
 
     @Override
