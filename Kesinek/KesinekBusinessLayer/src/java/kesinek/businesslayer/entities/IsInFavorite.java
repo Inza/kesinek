@@ -28,7 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "IsInFavorite.findAmount", query = "SELECT i.amount FROM IsInFavorite i WHERE i.productItemID = :productItemID AND i.favoriteID = :favoriteID"),
     @NamedQuery(name = "IsInFavorite.updateAmount", query = "UPDATE IsInFavorite i SET i.amount = :amount WHERE i.productItemID = :productItemID AND i.favoriteID = :favoriteID"),
     @NamedQuery(name = "IsInFavorite.findAll", query = "SELECT i FROM IsInFavorite i"),
-    @NamedQuery(name = "IsInFavorite.findByIsInFavoriteID", query = "SELECT i FROM IsInFavorite i WHERE i.IsInFavoriteID = :IsInFavoriteID")})
+    @NamedQuery(name = "IsInFavorite.findByIsInFavoriteID", query = "SELECT i FROM IsInFavorite i WHERE i.isInFavoriteID = :IsInFavoriteID")})
 public class IsInFavorite implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

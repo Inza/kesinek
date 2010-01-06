@@ -62,6 +62,8 @@ public class ProductItem implements Serializable {
     private Collection<IsInWishlist> isInWishlistCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productItemID", fetch = FetchType.LAZY)
     private Collection<IsInCategory> isInCategoryCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productItemID", fetch = FetchType.LAZY)
+    private Collection<IsInFavorite> isInFavoriteCollection;
 
     public ProductItem() {
     }
@@ -175,7 +177,7 @@ public class ProductItem implements Serializable {
     /**
      * NOTE: Provides fluent interface (means that you can chain setter calling)
      *
-     * @param isInPurchaseOrderCollection 
+     * @param isInPurchaseOrderCollection
      * @return ProductItem
      */
     public ProductItem setIsInPurchaseOrderCollection(Collection<IsInPurchaseOrder> isInPurchaseOrderCollection) {
@@ -190,11 +192,26 @@ public class ProductItem implements Serializable {
     /**
      * NOTE: Provides fluent interface (means that you can chain setter calling)
      *
-     * @param isInBasketCollection    
+     * @param isInBasketCollection
      * @return ProductItem
      */
     public ProductItem setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
         this.isInBasketCollection = isInBasketCollection;
+        return this;
+    }
+
+    public Collection<IsInFavorite> getIsInFavoriteCollection() {
+        return isInFavoriteCollection;
+    }
+
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInFavoriteCollection
+     * @return ProductItem
+     */
+    public ProductItem setIsInFavoriteCollection(Collection<IsInFavorite> isInFavoriteCollection) {
+        this.isInFavoriteCollection = isInFavoriteCollection;
         return this;
     }
 
