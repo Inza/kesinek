@@ -60,12 +60,20 @@ public interface UserBeanLocal {
     public User findUserByID(int id);
 
     /**
+     * Will find an user in the system by it's name
+     *
+     * @param name
+     * @return User
+     */
+    public User findUserByName(String name);
+
+    /**
      * Will add desired user to desired role
      *
      * @param user
      * @param role
      */
-    public void addUserToRole(User user, Role role);
+    public void addUserToRole(User user, String role);
 
     /**
      * Will remove desired user from desired role
@@ -73,21 +81,7 @@ public interface UserBeanLocal {
      * @param user
      * @param role
      */
-    public void removeUserFromRole(User user, Role role);
-
-    /**
-     * Will an user to the system
-     *
-     * @param role
-     */
-    public void addRole(Role role);
-
-    /**
-     * Will remove desired user from the system
-     *
-     * @param role
-     */
-    public void removeRole(Role role);
+    public void removeUserFromRole(User user, String role);
 
     /**
      * Will load all roles in the system

@@ -20,50 +20,54 @@ public class UserBean implements UserBeanLocal {
     EntityManager em;
 
     public void addUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.persist(user);
     }
 
     public void removeUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        user = em.merge(user);
+        em.remove(user);
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<User> getAllUsers() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createNamedQuery("User.findAll").getResultList();
     }
 
     public User findUserByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.getReference(User.class, id);
     }
 
-    public void addUserToRole(User user, Role role) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addUserToRole(User user, String role) {
+        Role r = new Role();
+        r.setName(role);
+        r.setUsername(user.getUsername());
+        em.persist(r);
     }
 
-    public void removeUserFromRole(User user, Role role) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removeUserFromRole(User user, String role) {
+        Role r = new Role();
+        r.setName(role);
+        r.setUsername(user.getUsername());
+        r = em.merge(r);
+        em.remove(r);
     }
 
-    public void addRole(Role role) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void removeRole(Role role) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    @SuppressWarnings("unchecked")
     public Collection<Role> getAllRoles() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createNamedQuery("Role.findAll").getResultList();
     }
 
     public void updateUser(User user) {
-       /* em.createNamedQuery("User.update")
-                .setParameter("name", category.getName())
-                .setParameter("description", category.getDescription())
-                .setParameter("categoryID", category.getCategoryID())
+        em.createNamedQuery("User.update")
+                .setParameter("address", user.getAddress())
+                .setParameter("password", user.getPassword())
+                .setParameter("userID", user.getUserID())
         .executeUpdate();
-        em.merge(category);*/
+        em.merge(user);
     }
 
-
+    public User findUserByName(String name) {
+        return (User) em.createNamedQuery("User.findByUsername").getSingleResult();
+    }
  
 }
