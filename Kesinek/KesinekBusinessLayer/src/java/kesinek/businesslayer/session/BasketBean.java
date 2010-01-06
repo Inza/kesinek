@@ -58,7 +58,7 @@ public class BasketBean implements BasketBeanLocal {
     }
 
     public Basket findBasketByUser(User user) {
-        return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user.getUserID()).getResultList();
+        return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
     }
 
     public void updateBasket(Basket basket) {

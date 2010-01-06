@@ -117,7 +117,7 @@ public class ProductBean implements ProductBeanLocal {
     public ProductItem findProductByName(String name) {
         return (ProductItem) em.createNamedQuery("ProductItem.findByName")
                 .setParameter("name", name)
-        .getResultList();
+        .getSingleResult();
     }
  
 }
