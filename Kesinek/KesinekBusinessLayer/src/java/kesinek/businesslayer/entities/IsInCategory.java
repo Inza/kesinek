@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -20,8 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * IsInCategory - IsInCategory relation entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 13:17
+ * - finalized: 4. 1. 2010, 13:17
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "isInCategory", catalog = "kesinek", schema = "")
@@ -53,24 +52,45 @@ public class IsInCategory implements Serializable {
         return isInCategoryID;
     }
 
-    public void setIsInCategoryID(Integer isInCategoryID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInCategoryID 
+     * @return IsInCategory
+     */
+    public IsInCategory setIsInCategoryID(Integer isInCategoryID) {
         this.isInCategoryID = isInCategoryID;
+        return this;
     }
 
     public Category getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(Category categoryID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param categoryID  
+     * @return IsInCategory
+     */
+    public IsInCategory setCategoryID(Category categoryID) {
         this.categoryID = categoryID;
+        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(ProductItem productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID  
+     * @return IsInCategory
+     */
+    public IsInCategory setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     @Override
