@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -17,8 +12,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * Role entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Role", catalog = "kesinek", schema = "")
@@ -58,24 +57,45 @@ public class Role implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param name
+     * @return Role
+     */
+    public Role setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getRoleID() {
         return roleID;
     }
 
-    public void setRoleID(Integer roleID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param roleID 
+     * @return Role
+     */
+    public Role setRoleID(Integer roleID) {
         this.roleID = roleID;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param username 
+     * @return Role
+     */
+    public Role setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     @Override
