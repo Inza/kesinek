@@ -28,35 +28,120 @@ import kesinek.businesslayer.entities.Warehouse;
 @Local
 public interface ProductBeanLocal {
 
+    /**
+     * Will add desired product to the system
+     *
+     * @param product
+     */
     void addProduct(ProductItem product);
 
+    /**
+     * Will remove desired product from the system
+     *
+     * @param product
+     */
     void removeProduct(ProductItem product);
 
+    /**
+     * Will add desired product to desired category
+     *
+     * @param product
+     * @param category
+     */
     void assignProductToCategory(ProductItem product, Category category);
 
+    /**
+     * Will remove desired product from the desired category
+     *
+     * @param product
+     * @param category
+     */
     void removeProductFromCategory(ProductItem product, Category category);
 
+    /**
+     * Will set desired product attribute to desired product
+     *
+     * @param attribute
+     * @param product
+     */
     void setProductAttribute(ProductAttribute attribute, ProductItem product);
 
+    /**
+     * Will add desired warehouse to the system
+     *
+     * @param warehouse 
+     */
     void addWarehouse(Warehouse warehouse);
 
+    /**
+     * Will remove desired warehouse from the system
+     *
+     * @param warehouse 
+     */
     void removeWarehouse(Warehouse warehouse);
 
+    /**
+     * Will add desired manufacturer to the system
+     *
+     * @param manufacturer 
+     */
     void addManufacturer(Manufacturer manufacturer);
 
+    /**
+     * Will remove desired manufacturer to the system
+     *
+     * @param manufacturer 
+     */
     void removeManufacturer(Manufacturer manufacturer);
 
+    /**
+     * Will find all manufacturers in the system
+     *
+     * @return List<Manufacturer>
+     */
     public List<Manufacturer> findAllManufacturer();
 
+    /**
+     * Will find all products in the system by category
+     *
+     * @return List<ProductItem>
+     */
     public List<ProductItem> findProductsByCategory(Category category);
 
+    /**
+     * Will find all products in the system by name
+     *
+     * @return List<ProductItem>
+     */
     public List<ProductItem> findProductsByName(String name);
 
+    /**
+     * Will find all products in the system
+     *
+     * @return List<ProductItem>
+     */
     public List<ProductItem> findAllProducts();
 
+    /**
+     * Will find a manufacturer in the system by id
+     *
+     * @param id 
+     * @return Manufacturer
+     */
     public Manufacturer findManufacturerByID(int id);
 
+    /**
+     * Will find a warehouse in the system by id
+     *
+     * @param id
+     * @return Warehouse
+     */
     public Warehouse findWarehouseByID(int id);
 
+    /**
+     * Will a manufacturer in the system
+     *
+     * @param manufacturer
+     */
     public void updateManufacturer(Manufacturer manufacturer);
 }
