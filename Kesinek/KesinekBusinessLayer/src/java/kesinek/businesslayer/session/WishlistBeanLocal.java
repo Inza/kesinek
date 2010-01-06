@@ -46,7 +46,7 @@ public interface WishlistBeanLocal {
      * @param wishlist
      */
     public void addProductToWishlist(ProductItem product, Wishlist wishlist);
-
+    
     /**
      * Will remove desired product from desired wishlist
      *
