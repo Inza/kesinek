@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -20,8 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * IsInWishlist - Wishlist and ProductItem relation entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 13:17
+ * - finalized: 4. 1. 2010, 13:17
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "isInWishlist", catalog = "kesinek", schema = "")
@@ -53,24 +52,45 @@ public class IsInWishlist implements Serializable {
         return isInWishlistID;
     }
 
-    public void setIsInWishlistID(Integer isInWishlistID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInWishlistID  
+     * @return IsInWishlist
+     */
+    public IsInWishlist setIsInWishlistID(Integer isInWishlistID) {
         this.isInWishlistID = isInWishlistID;
+        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(ProductItem productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID   
+     * @return IsInWishlist
+     */
+    public IsInWishlist setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     public Wishlist getWishlistID() {
         return wishlistID;
     }
 
-    public void setWishlistID(Wishlist wishlistID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param wishlistID 
+     * @return IsInWishlist
+     */
+    public IsInWishlist setWishlistID(Wishlist wishlistID) {
         this.wishlistID = wishlistID;
+        return this;
     }
 
     @Override
