@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ProductItem", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "ProductItem.findByCategory", query = "SELECT p FROM Category c JOIN c.isInCategoryCollection i JOIN i.productItemID p WHERE c.categoryID = :categoryID"),
     @NamedQuery(name = "ProductItem.findAll", query = "SELECT p FROM ProductItem p"),
     @NamedQuery(name = "ProductItem.findByAmount", query = "SELECT p FROM ProductItem p WHERE p.amount = :amount"),
     @NamedQuery(name = "ProductItem.findByName", query = "SELECT p FROM ProductItem p WHERE p.name = :name"),
