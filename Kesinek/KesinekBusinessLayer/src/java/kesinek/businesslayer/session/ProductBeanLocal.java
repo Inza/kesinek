@@ -104,6 +104,7 @@ public interface ProductBeanLocal {
     /**
      * Will find all products in the system by category
      *
+     * @param category
      * @return List<ProductItem>
      */
     public List<ProductItem> findProductsByCategory(Category category);
@@ -111,9 +112,18 @@ public interface ProductBeanLocal {
     /**
      * Will find all products in the system by name
      *
+     * @param name
      * @return List<ProductItem>
      */
     public List<ProductItem> findProductsByName(String name);
+
+    /**
+     * Will find one product in the system by name
+     *
+     * @param name
+     * @return ProductItem
+     */
+    public ProductItem findProductByName(String name);
 
     /**
      * Will find all products in the system

@@ -96,7 +96,7 @@ public class ProductBean implements ProductBeanLocal {
 
     @SuppressWarnings("unchecked")
     public List<ProductItem> findProductsByName(String name) {
-        return em.createNamedQuery("ProductItem.findByName")
+        return em.createNamedQuery("ProductItem.findAllByName")
                 .setParameter("name", name)
         .getResultList();
     }
@@ -112,6 +112,12 @@ public class ProductBean implements ProductBeanLocal {
 
     public ProductItem findProductByID(int id) {
         return em.getReference(ProductItem.class, id);
+    }
+
+    public ProductItem findProductByName(String name) {
+        return (ProductItem) em.createNamedQuery("ProductItem.findByName")
+                .setParameter("name", name)
+        .getResultList();
     }
  
 }
