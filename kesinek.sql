@@ -1,65 +1,6 @@
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `isInBasket`;
-
-CREATE TABLE `isInBasket` (
-  `isInBasketID` int(11) NOT NULL auto_increment,
-  `basketID` int(11) NOT NULL,
-  `productItemID` int(11) NOT NULL,
-  PRIMARY KEY  (`isInBasketID`),
-  KEY `productItemID` (`productItemID`),
-  KEY `basketID` (`basketID`),
-  CONSTRAINT `iiBasketFK` FOREIGN KEY (`basketID`) REFERENCES `Basket` (`basketID`),
-  CONSTRAINT `iiProductItemFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `isInCategory`;
-
-CREATE TABLE `isInCategory` (
-  `categoryID` int(11) NOT NULL,
-  `productItemID` int(11) NOT NULL,
-  `isInCategoryID` int(11) NOT NULL auto_increment,
-  PRIMARY KEY  (`isInCategoryID`),
-  KEY `productItemID` (`productItemID`),
-  KEY `categoryID` (`categoryID`),
-  CONSTRAINT `iiCategoryFK` FOREIGN KEY (`categoryID`) REFERENCES `Category` (`categoryID`),
-  CONSTRAINT `iiProductFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-insert into `isInCategory` values('1','1','1'),
- ('2','1','2'),
- ('1','2','3');
-
-DROP TABLE IF EXISTS `isInPurchaseOrder`;
-
-CREATE TABLE `isInPurchaseOrder` (
-  `isInPurchaseOrderID` int(11) NOT NULL auto_increment,
-  `purchaseOrderID` int(11) NOT NULL,
-  `productItemID` int(11) NOT NULL,
-  PRIMARY KEY  (`isInPurchaseOrderID`),
-  KEY `productItemID` (`productItemID`),
-  KEY `purchaseOrderID` (`purchaseOrderID`),
-  CONSTRAINT `orderFK` FOREIGN KEY (`purchaseOrderID`) REFERENCES `PurchaseOrder` (`purchaseOrderID`),
-  CONSTRAINT `productFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `isInWishlist`;
-
-CREATE TABLE `isInWishlist` (
-  `isInWishlistID` int(11) NOT NULL auto_increment,
-  `wishlistID` int(11) NOT NULL,
-  `productItemID` int(11) NOT NULL,
-  PRIMARY KEY  (`isInWishlistID`),
-  KEY `productItemID` (`productItemID`),
-  KEY `wishlistID` (`wishlistID`),
-  CONSTRAINT `proFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`),
-  CONSTRAINT `wishlistFK` FOREIGN KEY (`wishlistID`) REFERENCES `Wishlist` (`wishlistID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 DROP TABLE IF EXISTS `Basket`;
 
 CREATE TABLE `Basket` (
@@ -130,7 +71,7 @@ CREATE TABLE `Favorite` (
   PRIMARY KEY  (`favoritesID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-insert into `Favorite` values('1','');
+insert into `Favorite` values('1','defaultFavorite');
 
 DROP TABLE IF EXISTS `Manufacturer`;
 
@@ -241,5 +182,80 @@ CREATE TABLE `Wishlist` (
 
 insert into `Wishlist` values('1','1'),
  ('2','2');
+
+DROP TABLE IF EXISTS `isInBasket`;
+
+CREATE TABLE `isInBasket` (
+  `isInBasketID` int(11) NOT NULL auto_increment,
+  `basketID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  PRIMARY KEY  (`isInBasketID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `basketID` (`basketID`),
+  CONSTRAINT `iiBasketFK` FOREIGN KEY (`basketID`) REFERENCES `Basket` (`basketID`),
+  CONSTRAINT `iiProductItemFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `isInCategory`;
+
+CREATE TABLE `isInCategory` (
+  `categoryID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  `isInCategoryID` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`isInCategoryID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `categoryID` (`categoryID`),
+  CONSTRAINT `iiCategoryFK` FOREIGN KEY (`categoryID`) REFERENCES `Category` (`categoryID`),
+  CONSTRAINT `iiProductFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `isInCategory` values('1','1','1'),
+ ('2','1','2'),
+ ('1','2','3');
+
+DROP TABLE IF EXISTS `isInPurchaseOrder`;
+
+CREATE TABLE `isInPurchaseOrder` (
+  `isInPurchaseOrderID` int(11) NOT NULL auto_increment,
+  `purchaseOrderID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  PRIMARY KEY  (`isInPurchaseOrderID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `purchaseOrderID` (`purchaseOrderID`),
+  CONSTRAINT `orderFK` FOREIGN KEY (`purchaseOrderID`) REFERENCES `PurchaseOrder` (`purchaseOrderID`),
+  CONSTRAINT `productFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `isInWishlist`;
+
+CREATE TABLE `isInWishlist` (
+  `isInWishlistID` int(11) NOT NULL auto_increment,
+  `wishlistID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  PRIMARY KEY  (`isInWishlistID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `wishlistID` (`wishlistID`),
+  CONSTRAINT `proFK` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`),
+  CONSTRAINT `wishlistFK` FOREIGN KEY (`wishlistID`) REFERENCES `Wishlist` (`wishlistID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `isInFavorite`;
+
+CREATE TABLE `isInFavorite` (
+  `isInFavoriteID` int(11) NOT NULL auto_increment,
+  `favoriteID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY  (`isInFavoriteID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `wishlistID` (`favoriteID`),
+  CONSTRAINT `isInFavorite_ibfk_1` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`),
+  CONSTRAINT `isInFF` FOREIGN KEY (`favoriteID`) REFERENCES `Favorite` (`favoritesID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `isInFavorite` values('1','1','1','1');
 
 SET FOREIGN_KEY_CHECKS = 1;
