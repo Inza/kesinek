@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- * IsInCategory - IsInCategory relation entity class
+ * IsInCategory - Category and ProductItem relation entity class
  *
  * - reviewed: 4. 1. 2010, 13:17
  * - finalized: 4. 1. 2010, 13:17
