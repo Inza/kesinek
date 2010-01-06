@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Favorite", catalog = "kesinek", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Favorite.findMostFavoriteProducts", query = "SELECT p FROM ProductItem p INNER JOIN isInFavorite r ON r.productItemID = p.productItemID WHERE r.favoriteID = :favoriteID ORDER BY r.amount"),
+    @NamedQuery(name = "Favorite.findMostFavoriteProducts", query = "SELECT p FROM ProductItem p JOIN IsInFavorite r ON r.productItemID = p.productItemID WHERE r.favoriteID = :favoriteID ORDER BY r.amount"),
     @NamedQuery(name = "Favorite.findAll", query = "SELECT f FROM Favorite f"),
     @NamedQuery(name = "Favorite.findByFavoritesID", query = "SELECT f FROM Favorite f WHERE f.favoritesID = :favoritesID"),
     @NamedQuery(name = "Favorite.findByFavoritesName", query = "SELECT f FROM Favorite f WHERE f.favoritesName = :favoritesName")})
