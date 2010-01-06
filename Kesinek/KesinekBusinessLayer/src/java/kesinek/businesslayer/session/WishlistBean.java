@@ -9,6 +9,7 @@
 
 package kesinek.businesslayer.session;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -46,6 +47,20 @@ public class WishlistBean implements WishlistBeanLocal {
 
     public Wishlist getWishlistByUser(User user) {
         return (Wishlist) em.createNamedQuery("Wishlist.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Collection<ProductItem> getProductsInWishlist(Wishlist wishlist) {
+        return em.createNamedQuery("Wishlist.findRelatedProducts").setParameter("wishlistID", wishlist.getWishlistID()).getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Collection<ProductItem> getProductsInWishlist(User user) {
+        Wishlist w = this.getWishlistByUser(user);
+        if(w == null) {
+            return new ArrayList<ProductItem>();
+        }
+        return this.getProductsInWishlist(w);
     }
 
     public void addWishlist(Wishlist wishlist) {

@@ -72,6 +72,22 @@ public interface WishlistBeanLocal {
     public void removeProductFromWishlist(ProductItem product, User user);
 
     /**
+     * Will load all products in wishlist of desired user
+     *
+     * @param user
+     * @return Collection<ProductItem>
+     */
+    public Collection<ProductItem> getProductsInWishlist(User user);
+
+    /**
+     * Will load all products in desired wishlist
+     *
+     * @param wishlist
+     * @return Collection<ProductItem>
+     */
+    public Collection<ProductItem> getProductsInWishlist(Wishlist wishlist);
+
+    /**
      * Will load all wishlist from the system
      *
      * @return Collection<Wishlist>
