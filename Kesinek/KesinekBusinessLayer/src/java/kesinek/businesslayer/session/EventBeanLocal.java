@@ -37,7 +37,7 @@ public interface EventBeanLocal {
      *
      * @param event
      */
-    void removeBasket(Event event);
+    void removeEvent(Event event);
 
     /**
      * Will find all events in the system

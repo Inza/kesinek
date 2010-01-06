@@ -27,7 +27,7 @@ public class EventBean implements EventBeanLocal {
         em.persist(event);
     }
 
-    public void removeBasket(Event event) {
+    public void removeEvent(Event event) {
         event = em.merge(event);
         em.remove(event);
     }
