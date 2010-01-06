@@ -30,7 +30,9 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Basket.update", query = "UPDATE Basket SET userID = ':userID' WHERE basketID = ':basketID'"),
     @NamedQuery(name = "Basket.findAll", query = "SELECT b FROM Basket b"),
-    @NamedQuery(name = "Basket.findByBasketID", query = "SELECT b FROM Basket b WHERE b.basketID = :basketID")})
+    @NamedQuery(name = "Basket.findByUserID", query = "SELECT b FROM Basket b WHERE b.userID = :userID"),
+    @NamedQuery(name = "Basket.findByBasketID", query = "SELECT b FROM Basket b WHERE b.basketID = :basketID")
+})
 public class Basket implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
