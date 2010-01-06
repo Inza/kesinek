@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Basket", catalog = "kesinek", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Basket.update", query = "UPDATE basket SET userID = ':userID' WHERE basketID = ':basketID' LIMIT 1"),
+    @NamedQuery(name = "Basket.update", query = "UPDATE basket SET userID = ':userID' WHERE basketID = ':basketID'"),
     @NamedQuery(name = "Basket.findAll", query = "SELECT b FROM Basket b"),
     @NamedQuery(name = "Basket.findByBasketID", query = "SELECT b FROM Basket b WHERE b.basketID = :basketID")})
 public class Basket implements Serializable {

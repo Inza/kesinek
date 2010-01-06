@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -19,8 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * User entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "User", catalog = "kesinek", schema = "")
@@ -58,24 +57,45 @@ public class User implements Serializable {
         return address;
     }
 
-    public void setAddress(String address) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param address 
+     * @return User
+     */
+    public User setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param password 
+     * @return User
+     */
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param password 
+     * @return User
+     */
+    public User setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public Integer getUserID() {

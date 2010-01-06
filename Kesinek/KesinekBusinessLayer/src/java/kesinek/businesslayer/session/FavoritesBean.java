@@ -60,7 +60,7 @@ public class FavoritesBean implements FavoritesBeanLocal {
     public Collection<ProductItem> getMostFavoriteProducts(Favorite favorite, Integer number) {
         return em.createNamedQuery("Favorite.findMostFavoriteProducts")
                 .setParameter("favoritesID", favorite.getFavoritesID())
-                .setParameter("limit", number)
+                //.setParameter("limit", number)
         .getResultList();
     }
 
