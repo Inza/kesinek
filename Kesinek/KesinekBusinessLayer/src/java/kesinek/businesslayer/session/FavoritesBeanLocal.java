@@ -26,14 +26,14 @@ import kesinek.businesslayer.entities.ProductItem;
 public interface FavoritesBeanLocal {
 
     /**
-     * Will an event to the system
+     * Will a favorite to the system
      *
      * @param favorites
      */
     void addFavorite(Favorite favorites);
 
     /**
-     * Will remove desired event from the system
+     * Will remove desired favorite from the system
      *
      * @param favorites
      */
