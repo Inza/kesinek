@@ -1,5 +1,7 @@
 /*
  * This file describes ProductItem management session bean class.
+ *
+ * @author Tomáš Jukin
  */
 
 package kesinek.businesslayer.session;
@@ -9,54 +11,45 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Category;
+import kesinek.businesslayer.entities.IsInCategory;
 import kesinek.businesslayer.entities.Manufacturer;
 import kesinek.businesslayer.entities.ProductAttribute;
 import kesinek.businesslayer.entities.ProductItem;
 import kesinek.businesslayer.entities.Warehouse;
 
-/**
- * Handles BL for ProductItem, Category, ProductAttribute and Warehouse entity classes
- *
- * This bean will perform basic I/O operations with products (EC ProductItem), product's attributes (EC ProductAttribute) and warehouses (EC Warehouse) in the system
- *
- * One product could have many attributes, and could be stored in one storage. For simplicity purposes we do not have exemplars in the system.
- * Instead of them, we use product's amount attribute and EC Warehouse
- *
- * One product can be therefore stored only in one Warehouse. But this is for now desired behaviour
- *
- * @author Tomáš Jukin
- */
 @Stateless
 public class ProductBean implements ProductBeanLocal {
 
     @PersistenceContext
     EntityManager em;
 
-    /**
-     * Performs basic CUD operations with products
-     * 
-     * For create operation a new ProductItem instance with all required fields should be passes
-     * For update operation only fields which required to be changed shoul be set in passed ProductItem instance
-     * For delete operation only ProductItem's id should be filled
-     * 
-     * @param product
-     */
-    public void saveProduct(ProductItem product) {
-    }
-
     public void assignProductToCategory(ProductItem product, Category category) {
+        IsInCategory relation = new IsInCategory();
+        relation.setCategoryID(category);
+        relation.setProductItemID(product);
+        em.persist(relation);
     }
 
     public void removeProductFromCategory(ProductItem product, Category category) {
+        IsInCategory relation = new IsInCategory();
+        relation.setCategoryID(category);
+        relation.setProductItemID(product);
+        relation = em.merge(relation);
+        em.remove(relation);
     }
 
     public void setProductAttribute(ProductAttribute attribute, ProductItem product) {
+        attribute.setProductItemID(product.getProductItemID());
+        em.persist(attribute);
     }
 
     public void addWarehouse(Warehouse warehouse) {
+        em.persist(warehouse);
     }
 
     public void removeWarehouse(Warehouse warehouse) {
+        warehouse = em.merge(warehouse);
+        em.remove(warehouse);
     }
 
     public void addManufacturer(Manufacturer manufacturer) {
@@ -68,6 +61,7 @@ public class ProductBean implements ProductBeanLocal {
         em.remove(manufacturer);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Manufacturer> findAllManufacturer() {
         return em.createNamedQuery("Manufacturer.findAll").getResultList();
     }
@@ -77,10 +71,43 @@ public class ProductBean implements ProductBeanLocal {
     }
 
     public void updateManufacturer(Manufacturer manufacturer) {
-        em.createNativeQuery("UPDATE category SET name = '" + manufacturer.getName() + "' WHERE categoryID = " + manufacturer.getManufacturerID()).executeUpdate();
+        em.createNamedQuery("Manufacturer.update")
+                .setParameter("name", manufacturer.getName())
+                .setParameter("manufacturerID", manufacturer.getManufacturerID())
+        .executeUpdate();
         em.merge(manufacturer);
     }
 
-    
+    public void addProduct(ProductItem product) {
+        em.persist(product);
+    }
+
+    public void removeProduct(ProductItem product) {
+        product = em.merge(product);
+        em.remove(product);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ProductItem> findProductsByCategory(Category category) {
+        return em.createNamedQuery("ProductItem.findByCategory")
+                .setParameter("categoryID", category.getCategoryID())
+        .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ProductItem> findProductsByName(String name) {
+        return em.createNamedQuery("ProductItem.findByName")
+                .setParameter("name", name)
+        .getResultList();
+    }
+
+    public Warehouse findWarehouseByID(int id) {
+        return em.getReference(Warehouse.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ProductItem> findAllProducts() {
+        return em.createNamedQuery("ProductItem.findAll").getResultList();
+    }
  
 }
