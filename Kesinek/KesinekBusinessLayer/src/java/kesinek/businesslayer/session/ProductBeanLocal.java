@@ -139,6 +139,14 @@ public interface ProductBeanLocal {
     public Warehouse findWarehouseByID(int id);
 
     /**
+     * Will find a product in the system by id
+     *
+     * @param id
+     * @return ProductItem
+     */
+    public ProductItem findProductByID(int id);
+
+    /**
      * Will a manufacturer in the system
      *
      * @param manufacturer

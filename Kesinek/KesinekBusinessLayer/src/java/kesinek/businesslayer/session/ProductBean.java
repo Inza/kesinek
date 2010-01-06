@@ -109,5 +109,9 @@ public class ProductBean implements ProductBeanLocal {
     public List<ProductItem> findAllProducts() {
         return em.createNamedQuery("ProductItem.findAll").getResultList();
     }
+
+    public ProductItem findProductByID(int id) {
+        return em.getReference(ProductItem.class, id);
+    }
  
 }
