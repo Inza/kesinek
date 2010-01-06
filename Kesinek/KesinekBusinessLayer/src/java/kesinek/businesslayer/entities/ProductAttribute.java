@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -17,8 +12,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * ProductAttribute entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "ProductAttribute", catalog = "kesinek", schema = "")
@@ -63,32 +62,60 @@ public class ProductAttribute implements Serializable {
         return attributeValue;
     }
 
-    public void setAttributeValue(String attributeValue) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param attributeValue  
+     * @return ProductAttribute
+     */
+    public ProductAttribute setAttributeValue(String attributeValue) {
         this.attributeValue = attributeValue;
+        return this;
     }
 
     public Integer getProductAttributeID() {
         return productAttributeID;
     }
 
-    public void setProductAttributeID(Integer productAttributeID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productAttributeID 
+     * @return ProductAttribute
+     */
+    public ProductAttribute setProductAttributeID(Integer productAttributeID) {
         this.productAttributeID = productAttributeID;
+        return this;
     }
 
     public int getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(int productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID 
+     * @return ProductAttribute
+     */
+    public ProductAttribute setProductItemID(int productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     public int getCategoryAttributeID() {
         return categoryAttributeID;
     }
 
-    public void setCategoryAttributeID(int categoryAttributeID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param categoryAttributeID 
+     * @return ProductAttribute
+     */
+    public ProductAttribute setCategoryAttributeID(int categoryAttributeID) {
         this.categoryAttributeID = categoryAttributeID;
+        return this;
     }
 
     @Override
