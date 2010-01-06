@@ -78,5 +78,28 @@ public class FavoritesBean implements FavoritesBeanLocal {
         favorites = em.merge(favorites);
         em.remove(favorites);
     }
+
+    public void addProductToFavorites(ProductItem product) {
+        if(this.findFavoriteByID(1) == null) {
+            this.addFavorite(new Favorite(1, "Default"));
+        }
+        this.addProductToFavorites(product, new Favorite(1, "Default"));
+    }
+
+    public void removeProductFromFavorites(ProductItem product) {
+        this.removeProductFromFavorites(product, new Favorite(1, "Default"));
+    }
+
+    public void incrementProductEvaluation(ProductItem product) {
+        this.incrementProductEvaluation(product, new Favorite(1, "Default"));
+    }
+
+    public void decrementProductEvaluation(ProductItem product) {
+        this.decrementProductEvaluation(product, new Favorite(1, "Default"));
+    }
+
+    public Favorite findFavoriteByID(int id) {
+        return em.getReference(Favorite.class, id);
+    }
  
 }
