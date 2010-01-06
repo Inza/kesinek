@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Basket;
 import kesinek.businesslayer.entities.ProductItem;
+import kesinek.businesslayer.entities.User;
 
 /**
  * Handles BL for ProductItem and Basket entity classes
@@ -41,6 +42,22 @@ public interface BasketBeanLocal {
     void removeProductFromBasket(ProductItem product, Basket basket);
 
     /**
+     * Will add desired product to desired user's basket
+     *
+     * @param product
+     * @param user
+     */
+    void addProductToBasket(ProductItem product, User user);
+
+    /**
+     * Will remove desired product from desired user's basket
+     *
+     * @param product
+     * @param user
+     */
+    void removeProductFromBasket(ProductItem product, User user);
+
+    /**
      * Will add desired basket to the system
      *
      * @param basket
@@ -68,6 +85,14 @@ public interface BasketBeanLocal {
      * @return Basket
      */
     public Basket findBasketByID(int id);
+
+    /**
+     * Will find desired basket in the system by its owner
+     *
+     * @param user
+     * @return Basket
+     */
+    public Basket findBasketByUser(User user);
 
     /**
      * Will update desired basket in the system
