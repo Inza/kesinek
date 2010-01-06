@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -17,8 +12,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * Favorite entity class
  *
- * @author inza
+ * - reviewed: 6. 1. 2010, 7:55
+ * - finalized: 6. 1. 2010, 7:55
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "Favorite", catalog = "kesinek", schema = "")
@@ -53,16 +52,30 @@ public class Favorite implements Serializable {
         return favoritesID;
     }
 
-    public void setFavoritesID(Integer favoritesID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param favoritesID
+     * @return Favorite
+     */
+    public Favorite setFavoritesID(Integer favoritesID) {
         this.favoritesID = favoritesID;
+        return this;
     }
 
     public String getFavoritesName() {
         return favoritesName;
     }
 
-    public void setFavoritesName(String favoritesName) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param favoritesName 
+     * @return Favorite
+     */
+    public Favorite setFavoritesName(String favoritesName) {
         this.favoritesName = favoritesName;
+        return this;
     }
 
     @Override
