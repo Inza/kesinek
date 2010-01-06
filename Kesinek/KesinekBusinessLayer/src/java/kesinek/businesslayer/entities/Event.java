@@ -36,7 +36,7 @@ import javax.persistence.TemporalType;
 public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @Column(name = "date", nullable = false)
+    @Column(name = "dateTS", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Basic(optional = false)
