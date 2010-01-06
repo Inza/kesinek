@@ -22,6 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Manufacturer", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "Manufacturer.update", query = "UPDATE Manufacturer m SET m.name = :name WHERE m.manufacturerID = :manufacturerID"),
     @NamedQuery(name = "Manufacturer.findAll", query = "SELECT m FROM Manufacturer m"),
     @NamedQuery(name = "Manufacturer.findByName", query = "SELECT m FROM Manufacturer m WHERE m.name = :name"),
     @NamedQuery(name = "Manufacturer.findByManufacturerID", query = "SELECT m FROM Manufacturer m WHERE m.manufacturerID = :manufacturerID")})
