@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -20,8 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
+ * IsInPurchaseOrder entity class
  *
- * @author inza
+ * - reviewed: 6. 1. 2010, 7:55
+ * - finalized: 6. 1. 2010, 7:55
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "isInPurchaseOrder", catalog = "kesinek", schema = "")
@@ -53,24 +52,45 @@ public class IsInPurchaseOrder implements Serializable {
         return isInPurchaseOrderID;
     }
 
-    public void setIsInPurchaseOrderID(Integer isInPurchaseOrderID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInPurchaseOrderID 
+     * @return IsInPurchaseOrder
+     */
+    public IsInPurchaseOrder setIsInPurchaseOrderID(Integer isInPurchaseOrderID) {
         this.isInPurchaseOrderID = isInPurchaseOrderID;
+        return this;
     }
 
     public PurchaseOrder getPurchaseOrderID() {
         return purchaseOrderID;
     }
 
-    public void setPurchaseOrderID(PurchaseOrder purchaseOrderID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param purchaseOrderID  
+     * @return IsInPurchaseOrder
+     */
+    public IsInPurchaseOrder setPurchaseOrderID(PurchaseOrder purchaseOrderID) {
         this.purchaseOrderID = purchaseOrderID;
+        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(ProductItem productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID  
+     * @return IsInPurchaseOrder
+     */
+    public IsInPurchaseOrder setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     @Override
