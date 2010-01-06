@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -21,8 +16,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * ProductItem entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "ProductItem", catalog = "kesinek", schema = "")
@@ -83,80 +82,150 @@ public class ProductItem implements Serializable {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param amount   
+     * @return ProductItem
+     */
+    public ProductItem setAmount(Integer amount) {
         this.amount = amount;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param name    
+     * @return ProductItem
+     */
+    public ProductItem setName(String name) {
         this.name = name;
+        return this;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param price    
+     * @return ProductItem
+     */
+    public ProductItem setPrice(int price) {
         this.price = price;
+        return this;
     }
 
     public Integer getProductItemID() {
         return productItemID;
     }
 
-    public void setProductItemID(Integer productItemID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param productItemID    
+     * @return ProductItem
+     */
+    public ProductItem setProductItemID(Integer productItemID) {
         this.productItemID = productItemID;
+        return this;
     }
 
     public int getManufacturerID() {
         return manufacturerID;
     }
 
-    public void setManufacturerID(int manufacturerID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param manufacturerID 
+     * @return ProductItem
+     */
+    public ProductItem setManufacturerID(int manufacturerID) {
         this.manufacturerID = manufacturerID;
+        return this;
     }
 
     public int getWarehouseID() {
         return warehouseID;
     }
 
-    public void setWarehouseID(int warehouseID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param warehouseID
+     * @return ProductItem
+     */
+    public ProductItem setWarehouseID(int warehouseID) {
         this.warehouseID = warehouseID;
+        return this;
     }
 
     public Collection<IsInPurchaseOrder> getIsInPurchaseOrderCollection() {
         return isInPurchaseOrderCollection;
     }
 
-    public void setIsInPurchaseOrderCollection(Collection<IsInPurchaseOrder> isInPurchaseOrderCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInPurchaseOrderCollection 
+     * @return ProductItem
+     */
+    public ProductItem setIsInPurchaseOrderCollection(Collection<IsInPurchaseOrder> isInPurchaseOrderCollection) {
         this.isInPurchaseOrderCollection = isInPurchaseOrderCollection;
+        return this;
     }
 
     public Collection<IsInBasket> getIsInBasketCollection() {
         return isInBasketCollection;
     }
 
-    public void setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInBasketCollection    
+     * @return ProductItem
+     */
+    public ProductItem setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
         this.isInBasketCollection = isInBasketCollection;
+        return this;
     }
 
     public Collection<IsInWishlist> getIsInWishlistCollection() {
         return isInWishlistCollection;
     }
 
-    public void setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInWishlistCollection 
+     * @return ProductItem
+     */
+    public ProductItem setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
         this.isInWishlistCollection = isInWishlistCollection;
+        return this;
     }
 
     public Collection<IsInCategory> getIsInCategoryCollection() {
         return isInCategoryCollection;
     }
 
-    public void setIsInCategoryCollection(Collection<IsInCategory> isInCategoryCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInCategoryCollection    
+     * @return ProductItem
+     */
+    public ProductItem setIsInCategoryCollection(Collection<IsInCategory> isInCategoryCollection) {
         this.isInCategoryCollection = isInCategoryCollection;
+        return this;
     }
 
     @Override
