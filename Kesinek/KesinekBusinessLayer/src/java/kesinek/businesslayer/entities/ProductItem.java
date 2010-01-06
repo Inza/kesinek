@@ -29,6 +29,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "ProductItem.findByCategory", query = "SELECT p FROM Category c JOIN c.isInCategoryCollection i JOIN i.productItemID p WHERE c.categoryID = :categoryID"),
     @NamedQuery(name = "ProductItem.findAll", query = "SELECT p FROM ProductItem p"),
     @NamedQuery(name = "ProductItem.findByAmount", query = "SELECT p FROM ProductItem p WHERE p.amount = :amount"),
+    @NamedQuery(name = "ProductItem.findAllByName", query = "SELECT p FROM ProductItem p WHERE p.name LIKE %:name%"),
     @NamedQuery(name = "ProductItem.findByName", query = "SELECT p FROM ProductItem p WHERE p.name = :name"),
     @NamedQuery(name = "ProductItem.findByPrice", query = "SELECT p FROM ProductItem p WHERE p.price = :price"),
     @NamedQuery(name = "ProductItem.findByProductItemID", query = "SELECT p FROM ProductItem p WHERE p.productItemID = :productItemID"),
