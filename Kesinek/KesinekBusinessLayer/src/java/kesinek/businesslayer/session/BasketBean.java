@@ -70,8 +70,9 @@ public class BasketBean implements BasketBeanLocal {
     }
 
     public void addProductToBasket(ProductItem product, User user) {
-        Basket b = new Basket();
-        if(this.findBasketByUser(user) == null) { // Will create a user's basket if it doesn't exist
+        Basket b = this.findBasketByUser(user);
+        if(b == null) { // Will create a user's basket if it doesn't exist
+            b = new Basket();
             b.setUserID(user);
             this.addBasket(b);
         }
