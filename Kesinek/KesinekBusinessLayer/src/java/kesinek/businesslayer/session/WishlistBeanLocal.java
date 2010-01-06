@@ -6,7 +6,6 @@ package kesinek.businesslayer.session;
 
 import java.util.Collection;
 import javax.ejb.Local;
-import kesinek.businesslayer.entities.ProductAttribute;
 import kesinek.businesslayer.entities.ProductItem;
 import kesinek.businesslayer.entities.User;
 import kesinek.businesslayer.entities.Wishlist;
@@ -14,19 +13,61 @@ import kesinek.businesslayer.entities.Wishlist;
 /**
  * Handles BL for ProductAttribute and Wishlist entity classes
  *
+ * This bean will perform basic I/O operations with wishlists (EC Wishlist) in the system
+ *
+ * Every wishlist could have many product on it and this relation is also managed by this bean
+ *
+ * - reviewed: 6. 1. 2010, 7:55
+ * - finalized: 6. 1. 2010, 7:55
+ *
  * @author Tomáš Jukin
  */
 @Local
 public interface WishlistBeanLocal {
 
-    void addProductToWishlist(ProductAttribute product, Wishlist wishlist);
+    /**
+     * Will a wishlist to the system
+     *
+     * @param wishlist
+     */
+    void addWishlist(Wishlist wishlist);
 
-    void saveWishlist(Wishlist wishlist);
+    /**
+     * Will remove desired wishlist from the system
+     *
+     * @param wishlist
+     */
+    void removeWishlist(Wishlist wishlist);
 
+    /**
+     * Will add desired product to desired wishlist
+     * 
+     * @param product
+     * @param wishlist
+     */
+    void addProductToWishlist(ProductItem product, Wishlist wishlist);
+
+    /**
+     * Will remove desired product to desired wishlist
+     *
+     * @param product
+     * @param wishlist
+     */
     void removeProductFromWishlist(ProductItem product, Wishlist wishlist);
 
+    /**
+     * Will load all wishlist from the system
+     *
+     * @return Collection<Wishlist>
+     */
     Collection<Wishlist> getAllWishlists();
 
+    /**
+     * Will a wishlist of desired user
+     *
+     * @param user
+     * @return Wishlist
+     */
     Wishlist getWishlistByUser(User user);
     
 }

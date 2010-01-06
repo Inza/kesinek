@@ -1,52 +1,54 @@
 /*
  * This file describes Wishlist management session bean class.
+ *
+ * - reviewed: 6. 1. 2010, 7:55
+ * - finalized: 6. 1. 2010, 7:55
+ *
+ * @author Tomáš Jukin
  */
 
 package kesinek.businesslayer.session;
 
 import java.util.Collection;
 import javax.ejb.Stateless;
-import kesinek.businesslayer.entities.ProductAttribute;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import kesinek.businesslayer.entities.IsInWishlist;
 import kesinek.businesslayer.entities.ProductItem;
 import kesinek.businesslayer.entities.User;
 import kesinek.businesslayer.entities.Wishlist;
 
-/**
- * Handles BL for ProductAttribute and Wishlist entity classes
- *
- * This bean will perform basic I/O operations with wishlists (EC Wishlist) in the system
- *
- * Every wishlist could have many product on it and this relation is also managed by this bean
- *
- * @author Tomáš Jukin
- */
 @Stateless
 public class WishlistBean implements WishlistBeanLocal {
 
-    public void addProductToWishlist(ProductAttribute product, Wishlist wishlist) {
-    }
+    @PersistenceContext
+    private EntityManager em;
 
-    /**
-     * Performs basic CUD operations with wishlists
-     * 
-     * For create operation a new Wishlist instance with all required fields should be passes
-     * For update operation only fields which required to be changed shoul be set in passed Wishlist instance
-     * For delete operation only Wishlist's id should be filled
-     * 
-     * @param wishlist
-     */
-    public void saveWishlist(Wishlist wishlist) {
+    public void addProductToWishlist(ProductItem product, Wishlist wishlist) {
+        em.persist(new IsInWishlist().setWishlistID(wishlist).setProductItemID(product));
     }
 
     public void removeProductFromWishlist(ProductItem product, Wishlist wishlist) {
+        IsInWishlist relation = em.merge(new IsInWishlist().setWishlistID(wishlist).setProductItemID(product));
+        em.remove(relation);
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<Wishlist> getAllWishlists() {
-        return null;
+        return em.createNamedQuery("Wishlist.findAll").getResultList();
     }
 
     public Wishlist getWishlistByUser(User user) {
-        return null;
+        return (Wishlist) em.createNamedQuery("Wishlist.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+    }
+
+    public void addWishlist(Wishlist wishlist) {
+        em.persist(wishlist);
+    }
+
+    public void removeWishlist(Wishlist wishlist) {
+        wishlist = em.merge(wishlist);
+        em.remove(wishlist);
     }
  
 }
