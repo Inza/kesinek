@@ -9,7 +9,7 @@ CREATE TABLE `Basket` (
   PRIMARY KEY  (`basketID`),
   KEY `userID` (`userID`),
   KEY `userID_2` (`userID`),
-  CONSTRAINT `basketsFK` FOREIGN KEY (`userID`) REFERENCES `User` (`userID`)
+  CONSTRAINT `basketsFK` FOREIGN KEY (`userID`) REFERENCES `UserAccount` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 insert into `Basket` values('1','1');
@@ -49,14 +49,14 @@ insert into `CategoryAttribute` values('Dostrel je nice','Dostrel','1','2'),
 DROP TABLE IF EXISTS `Event`;
 
 CREATE TABLE `Event` (
-  `date` datetime NOT NULL,
+  `dateTS` datetime NOT NULL,
   `text` varchar(50) NOT NULL,
   `eventID` int(11) NOT NULL auto_increment,
   `userID` int(11) NOT NULL,
   PRIMARY KEY  (`eventID`),
   KEY `userID` (`userID`),
   KEY `userID_2` (`userID`),
-  CONSTRAINT `eventsFK` FOREIGN KEY (`userID`) REFERENCES `User` (`userID`)
+  CONSTRAINT `eventsFK` FOREIGN KEY (`userID`) REFERENCES `UserAccount` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 insert into `Event` values('2009-12-13 12:03:37','Uživatel User se vysmrkal','1','1'),
@@ -132,34 +132,6 @@ CREATE TABLE `PurchaseOrder` (
 
 insert into `PurchaseOrder` values('1','1');
 
-DROP TABLE IF EXISTS `Role`;
-
-CREATE TABLE `Role` (
-  `name` varchar(50) NOT NULL,
-  `roleID` int(11) NOT NULL auto_increment,
-  `username` varchar(50) NOT NULL,
-  PRIMARY KEY  (`roleID`),
-  KEY `userID` (`username`),
-  KEY `userID_2` (`username`),
-  KEY `userID_3` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-insert into `Role` values('Admin','1','2'),
- ('User','2','1');
-
-DROP TABLE IF EXISTS `User`;
-
-CREATE TABLE `User` (
-  `address` varchar(50) default NULL,
-  `password` varchar(50) default NULL,
-  `username` varchar(50) default NULL,
-  `userID` int(11) NOT NULL,
-  PRIMARY KEY  (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-insert into `User` values('U Popelnic 16, Praha 3','abcde','User','1'),
- ('Pod Mostem 5, Sme?ák 8','efghi','Admin','2');
-
 DROP TABLE IF EXISTS `Warehouse`;
 
 CREATE TABLE `Warehouse` (
@@ -214,6 +186,22 @@ insert into `isInCategory` values('1','1','1'),
  ('2','1','2'),
  ('1','2','3');
 
+DROP TABLE IF EXISTS `isInFavorite`;
+
+CREATE TABLE `isInFavorite` (
+  `isInFavoriteID` int(11) NOT NULL auto_increment,
+  `favoriteID` int(11) NOT NULL,
+  `productItemID` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY  (`isInFavoriteID`),
+  KEY `productItemID` (`productItemID`),
+  KEY `wishlistID` (`favoriteID`),
+  CONSTRAINT `isInFavorite_ibfk_1` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`),
+  CONSTRAINT `isInFF` FOREIGN KEY (`favoriteID`) REFERENCES `Favorite` (`favoritesID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `isInFavorite` values('1','1','1','1');
+
 DROP TABLE IF EXISTS `isInPurchaseOrder`;
 
 CREATE TABLE `isInPurchaseOrder` (
@@ -242,20 +230,32 @@ CREATE TABLE `isInWishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `isInFavorite`;
+DROP TABLE IF EXISTS `UserAccount`;
 
-CREATE TABLE `isInFavorite` (
-  `isInFavoriteID` int(11) NOT NULL auto_increment,
-  `favoriteID` int(11) NOT NULL,
-  `productItemID` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  PRIMARY KEY  (`isInFavoriteID`),
-  KEY `productItemID` (`productItemID`),
-  KEY `wishlistID` (`favoriteID`),
-  CONSTRAINT `isInFavorite_ibfk_1` FOREIGN KEY (`productItemID`) REFERENCES `ProductItem` (`productItemID`),
-  CONSTRAINT `isInFF` FOREIGN KEY (`favoriteID`) REFERENCES `Favorite` (`favoritesID`)
+CREATE TABLE `UserAccount` (
+  `address` varchar(50) default NULL,
+  `password` varchar(50) default NULL,
+  `username` varchar(50) default NULL,
+  `userID` int(11) NOT NULL,
+  PRIMARY KEY  (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-insert into `isInFavorite` values('1','1','1','1');
+insert into `UserAccount` values('U Popelnic 16, Praha 3','abcde','User','1'),
+ ('Pod Mostem 5, Sme?ák 8','efghi','Admin','2');
+
+DROP TABLE IF EXISTS `UserRole`;
+
+CREATE TABLE `UserRole` (
+  `name` varchar(50) NOT NULL,
+  `roleID` int(11) NOT NULL auto_increment,
+  `username` varchar(50) NOT NULL,
+  PRIMARY KEY  (`roleID`),
+  KEY `userID` (`username`),
+  KEY `userID_2` (`username`),
+  KEY `userID_3` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `UserRole` values('Admin','1','2'),
+ ('User','2','1');
 
 SET FOREIGN_KEY_CHECKS = 1;
