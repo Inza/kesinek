@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package kesinek.businesslayer.entities;
 
 import java.io.Serializable;
@@ -21,8 +16,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * PurchaseOrder entity class
  *
- * @author inza
+ * - reviewed: 4. 1. 2010, 12:30
+ * - finalized: 4. 1. 2010, 12:32
+ *
+ * @author Tomáš Jukin
  */
 @Entity
 @Table(name = "PurchaseOrder", catalog = "kesinek", schema = "")
@@ -59,24 +58,45 @@ public class PurchaseOrder implements Serializable {
         return purchaseOrderID;
     }
 
-    public void setPurchaseOrderID(Integer purchaseOrderID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param purchaseOrderID    
+     * @return PurchaseOrder
+     */
+    public PurchaseOrder setPurchaseOrderID(Integer purchaseOrderID) {
         this.purchaseOrderID = purchaseOrderID;
+        return this;
     }
 
     public int getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param userID     
+     * @return PurchaseOrder
+     */
+    public PurchaseOrder setUserID(int userID) {
         this.userID = userID;
+        return this;
     }
 
     public Collection<IsInPurchaseOrder> getIsInPurchaseOrderCollection() {
         return isInPurchaseOrderCollection;
     }
 
-    public void setIsInPurchaseOrderCollection(Collection<IsInPurchaseOrder> isInPurchaseOrderCollection) {
+    /**
+     * NOTE: Provides fluent interface (means that you can chain setter calling)
+     *
+     * @param isInPurchaseOrderCollection
+     * @return PurchaseOrder
+     */
+    public PurchaseOrder setIsInPurchaseOrderCollection(Collection<IsInPurchaseOrder> isInPurchaseOrderCollection) {
         this.isInPurchaseOrderCollection = isInPurchaseOrderCollection;
+        return this;
     }
 
     @Override
