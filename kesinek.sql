@@ -236,7 +236,7 @@ CREATE TABLE `UserAccount` (
   `address` varchar(50) default NULL,
   `password` varchar(50) default NULL,
   `username` varchar(50) default NULL,
-  `userID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
