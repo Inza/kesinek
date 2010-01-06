@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <managed-bean>
+        <managed-bean-name>categoryFilteringBean</managed-bean-name>
+        <managed-bean-class>kesinek.filters.CategoryFilteringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoryBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.CategoryBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>manufacturerFilteringBean</managed-bean-name>
+        <managed-bean-class>kesinek.filters.ManufacturerFilteringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>manufacturerBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.ManufacturerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <validator>
+        <validator-id>categoryValidator</validator-id>
+        <validator-class>kesinek.validators.CategoryNameValidator</validator-class>
+    </validator>
+    <navigation-rule>
+        <from-view-id>/admin/index.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>category</from-outcome>
+            <to-view-id>/admin/category.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manufacturer</from-outcome>
+            <to-view-id>/admin/manufacturer.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/category.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/manufacturer.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
+
+
+
+
+
+
+
+
