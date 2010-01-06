@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "UserAccount", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "User.update", query = "UPDATE User u SET u.address = :address, u.password = :password WHERE u.userID = :userID"),
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
