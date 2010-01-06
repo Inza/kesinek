@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CategoryAttribute", catalog = "kesinek", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "CategoryAttribute.update", query = "UPDATE CategoryAttribute SET name = ':name', description = ':description', categoryID = ':categoryID' WHERE categoryAttributeID = ':categoryAttributeID'"),
+    @NamedQuery(name = "CategoryAttribute.update", query = "UPDATE CategoryAttribute c SET c.name = ':name', c.description = ':description', c.categoryID = ':categoryID' WHERE c.categoryAttributeID = ':categoryAttributeID'"),
     @NamedQuery(name = "CategoryAttribute.findAll", query = "SELECT c FROM CategoryAttribute c"),
     @NamedQuery(name = "CategoryAttribute.findByDescription", query = "SELECT c FROM CategoryAttribute c WHERE c.description = :description"),
     @NamedQuery(name = "CategoryAttribute.findByName", query = "SELECT c FROM CategoryAttribute c WHERE c.name = :name"),

@@ -17,10 +17,6 @@ import kesinek.businesslayer.entities.User;
 @Local
 public interface UserBeanLocal {
 
-    void saveUser(User user);
-
-    Collection<User> getUsersByName(String name);
-
     Collection<User> getAllUsers();
 
     void addUserToRole(User user, Role role);
@@ -28,6 +24,4 @@ public interface UserBeanLocal {
     void removeUserFromRole(User user, Role role);
 
     Collection<Role> getAllRoles();
-
-    Collection<Role> getRolesByName(String name);
 }
