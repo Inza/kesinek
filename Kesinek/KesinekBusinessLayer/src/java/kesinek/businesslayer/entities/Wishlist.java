@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Wishlist", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "Wishlist.findRelatedProducts", query = "SELECT p FROM ProductItem p JOIN p.isInWishlistCollection i WHERE i.wishlistID = :wishlistID"),
     @NamedQuery(name = "Wishlist.findAll", query = "SELECT w FROM Wishlist w"),
     @NamedQuery(name = "Wishlist.findByWishlistID", query = "SELECT w FROM Wishlist w WHERE w.wishlistID = :wishlistID"),
     @NamedQuery(name = "Wishlist.findByUserID", query = "SELECT w FROM Wishlist w WHERE w.userID = :userID")})
