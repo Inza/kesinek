@@ -25,11 +25,17 @@ public class WishlistBean implements WishlistBeanLocal {
     private EntityManager em;
 
     public void addProductToWishlist(ProductItem product, Wishlist wishlist) {
-        em.persist(new IsInWishlist().setWishlistID(wishlist).setProductItemID(product));
+        IsInWishlist relation = new IsInWishlist();
+        relation.setWishlistID(wishlist);
+        relation.setProductItemID(product);
+        em.persist(relation);
     }
 
     public void removeProductFromWishlist(ProductItem product, Wishlist wishlist) {
-        IsInWishlist relation = em.merge(new IsInWishlist().setWishlistID(wishlist).setProductItemID(product));
+        IsInWishlist relation = new IsInWishlist();
+        relation.setWishlistID(wishlist);
+        relation.setProductItemID(product);
+        relation = em.merge(relation);
         em.remove(relation);
     }
 

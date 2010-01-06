@@ -57,45 +57,24 @@ public class User implements Serializable {
         return address;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param address 
-     * @return User
-     */
-    public User setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param password 
-     * @return User
-     */
-    public User setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param password 
-     * @return User
-     */
-    public User setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
     public Integer getUserID() {

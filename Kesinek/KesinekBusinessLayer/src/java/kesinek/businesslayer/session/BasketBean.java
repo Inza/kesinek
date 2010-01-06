@@ -24,15 +24,17 @@ public class BasketBean implements BasketBeanLocal {
     private EntityManager em;
     
     public void addProductToBasket(ProductItem product, Basket basket) {
-        em.persist(new IsInBasket().setBasketID(basket).setProductItemID(product));
+        IsInBasket relation = new IsInBasket();
+        relation.setBasketID(basket);
+        relation.setProductItemID(product);
+        em.persist(relation);
     }
     
     public void removeProductFromBasket(ProductItem product, Basket basket) {
-        IsInBasket relation = em.merge(
-                new IsInBasket()
-                    .setBasketID(basket)
-                    .setProductItemID(product)
-        );
+        IsInBasket relation = new IsInBasket();
+        relation.setBasketID(basket);
+        relation.setProductItemID(product);
+        relation = em.merge(relation);
         em.remove(relation);
     }
 

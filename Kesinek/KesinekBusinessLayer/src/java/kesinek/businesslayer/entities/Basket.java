@@ -55,39 +55,24 @@ public class Basket implements Serializable {
         return basketID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param basketID
-     * @return Basket
-     */
-    public Basket setBasketID(Integer basketID) {
+    public void setBasketID(Integer basketID) {
         this.basketID = basketID;
-        return this;
     }
 
     public User getUserID() {
         return userID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param userID 
-     * @return Basket
-     */
-    public Basket setUserID(User userID) {
+    public void setUserID(User userID) {
         this.userID = userID;
-        return this;
     }
 
     public Collection<IsInBasket> getIsInBasketCollection() {
         return isInBasketCollection;
     }
 
-    public Basket setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
+    public void setIsInBasketCollection(Collection<IsInBasket> isInBasketCollection) {
         this.isInBasketCollection = isInBasketCollection;
-        return this;
     }
 
     @Override

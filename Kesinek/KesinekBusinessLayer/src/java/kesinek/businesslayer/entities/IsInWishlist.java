@@ -52,45 +52,24 @@ public class IsInWishlist implements Serializable {
         return isInWishlistID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInWishlistID  
-     * @return IsInWishlist
-     */
-    public IsInWishlist setIsInWishlistID(Integer isInWishlistID) {
+    public void setIsInWishlistID(Integer isInWishlistID) {
         this.isInWishlistID = isInWishlistID;
-        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID   
-     * @return IsInWishlist
-     */
-    public IsInWishlist setProductItemID(ProductItem productItemID) {
+    public void setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     public Wishlist getWishlistID() {
         return wishlistID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param wishlistID 
-     * @return IsInWishlist
-     */
-    public IsInWishlist setWishlistID(Wishlist wishlistID) {
+    public void setWishlistID(Wishlist wishlistID) {
         this.wishlistID = wishlistID;
-        return this;
     }
 
     @Override

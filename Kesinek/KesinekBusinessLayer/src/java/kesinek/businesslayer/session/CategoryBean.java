@@ -53,11 +53,13 @@ public class CategoryBean implements CategoryBeanLocal {
     }
 
     public void addCategoryAttribute(Category category, CategoryAttribute attribute) {
-        em.persist(attribute.setCategoryID(category));
+        attribute.setCategoryID(category);
+        em.persist(attribute);
     }
 
     public void removeCategoryAttribute(Category category, CategoryAttribute attribute) {
-        attribute = em.merge(attribute.setCategoryID(category));
+        attribute.setCategoryID(category);
+        attribute = em.merge(attribute);
         em.remove(attribute);
     }
 

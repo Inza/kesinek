@@ -24,11 +24,17 @@ public class FavoritesBean implements FavoritesBeanLocal {
     private EntityManager em;
 
     public void addProductToFavorites(ProductItem product, Favorite favorites) {
-        em.persist(new IsInFavorite().setFavoriteID(favorites).setProductItemID(product));
+        IsInFavorite relation = new IsInFavorite();
+        relation.setFavoriteID(favorites);
+        relation.setProductItemID(product);
+        em.persist(relation);
     }
 
     public void removeProductFromFavorites(ProductItem product, Favorite favorites) {
-        IsInFavorite relation = em.merge(new IsInFavorite().setFavoriteID(favorites).setProductItemID(product));
+        IsInFavorite relation = new IsInFavorite();
+        relation.setFavoriteID(favorites);
+        relation.setProductItemID(product);
+        relation = em.merge(relation);
         em.remove(relation);
     }
 

@@ -52,45 +52,24 @@ public class IsInCategory implements Serializable {
         return isInCategoryID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInCategoryID 
-     * @return IsInCategory
-     */
-    public IsInCategory setIsInCategoryID(Integer isInCategoryID) {
+    public void setIsInCategoryID(Integer isInCategoryID) {
         this.isInCategoryID = isInCategoryID;
-        return this;
     }
 
     public Category getCategoryID() {
         return categoryID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param categoryID  
-     * @return IsInCategory
-     */
-    public IsInCategory setCategoryID(Category categoryID) {
+    public void setCategoryID(Category categoryID) {
         this.categoryID = categoryID;
-        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID  
-     * @return IsInCategory
-     */
-    public IsInCategory setProductItemID(ProductItem productItemID) {
+    public void setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     @Override

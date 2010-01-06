@@ -58,45 +58,24 @@ public class Wishlist implements Serializable {
         return wishlistID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param wishlistID 
-     * @return Wishlist
-     */
-    public Wishlist setWishlistID(Integer wishlistID) {
+    public void setWishlistID(Integer wishlistID) {
         this.wishlistID = wishlistID;
-        return this;
     }
 
     public int getUserID() {
         return userID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param userID  
-     * @return Wishlist
-     */
-    public Wishlist setUserID(int userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
-        return this;
     }
 
     public Collection<IsInWishlist> getIsInWishlistCollection() {
         return isInWishlistCollection;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInWishlistCollection  
-     * @return Wishlist
-     */
-    public Wishlist setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
+    public void setIsInWishlistCollection(Collection<IsInWishlist> isInWishlistCollection) {
         this.isInWishlistCollection = isInWishlistCollection;
-        return this;
     }
 
     @Override

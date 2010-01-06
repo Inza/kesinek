@@ -57,45 +57,24 @@ public class Role implements Serializable {
         return name;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param name
-     * @return Role
-     */
-    public Role setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public Integer getRoleID() {
         return roleID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param roleID 
-     * @return Role
-     */
-    public Role setRoleID(Integer roleID) {
+    public void setRoleID(Integer roleID) {
         this.roleID = roleID;
-        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param username 
-     * @return Role
-     */
-    public Role setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
     @Override

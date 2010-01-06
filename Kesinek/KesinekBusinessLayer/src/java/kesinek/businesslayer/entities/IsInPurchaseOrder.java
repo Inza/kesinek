@@ -52,45 +52,24 @@ public class IsInPurchaseOrder implements Serializable {
         return isInPurchaseOrderID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInPurchaseOrderID 
-     * @return IsInPurchaseOrder
-     */
-    public IsInPurchaseOrder setIsInPurchaseOrderID(Integer isInPurchaseOrderID) {
+    public void setIsInPurchaseOrderID(Integer isInPurchaseOrderID) {
         this.isInPurchaseOrderID = isInPurchaseOrderID;
-        return this;
     }
 
     public PurchaseOrder getPurchaseOrderID() {
         return purchaseOrderID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param purchaseOrderID  
-     * @return IsInPurchaseOrder
-     */
-    public IsInPurchaseOrder setPurchaseOrderID(PurchaseOrder purchaseOrderID) {
+    public void setPurchaseOrderID(PurchaseOrder purchaseOrderID) {
         this.purchaseOrderID = purchaseOrderID;
-        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID  
-     * @return IsInPurchaseOrder
-     */
-    public IsInPurchaseOrder setProductItemID(ProductItem productItemID) {
+    public void setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     @Override

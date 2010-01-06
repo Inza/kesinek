@@ -57,60 +57,32 @@ public class IsInFavorite implements Serializable {
         return isInFavoriteID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInFavoriteID 
-     * @return IsInFavorite
-     */
-    public IsInFavorite setIsInFavoriteID(Integer isInFavoriteID) {
+    public void setIsInFavoriteID(Integer isInFavoriteID) {
         this.isInFavoriteID = isInFavoriteID;
-        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID 
-     * @return IsInFavorite
-     */
-    public IsInFavorite setProductItemID(ProductItem productItemID) {
+    public void setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     public Integer getAmount() {
         return amount;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param amount 
-     * @return IsInFavorite
-     */
-    public IsInFavorite setAmount(Integer amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
-        return this;
     }
 
     public Favorite getFavoriteID() {
         return favoriteID;
     }
-
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param favoriteID 
-     * @return IsInFavorite
-     */
-    public IsInFavorite setFavoriteID(Favorite favoriteID) {
+    
+    public void setFavoriteID(Favorite favoriteID) {
         this.favoriteID = favoriteID;
-        return this;
     }
 
     @Override

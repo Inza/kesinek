@@ -52,30 +52,16 @@ public class Manufacturer implements Serializable {
         return name;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param name   
-     * @return Manufacturer
-     */
-    public Manufacturer setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public Integer getManufacturerID() {
         return manufacturerID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param manufacturerID 
-     * @return Manufacturer
-     */
-    public Manufacturer setManufacturerID(Integer manufacturerID) {
+    public void setManufacturerID(Integer manufacturerID) {
         this.manufacturerID = manufacturerID;
-        return this;
     }
 
     @Override

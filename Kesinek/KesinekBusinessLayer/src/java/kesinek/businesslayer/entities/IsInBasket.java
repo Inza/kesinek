@@ -52,45 +52,24 @@ public class IsInBasket implements Serializable {
         return isInBasketID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param isInBasketID
-     * @return IsInBasket
-     */
-    public IsInBasket setIsInBasketID(Integer isInBasketID) {
+    public void setIsInBasketID(Integer isInBasketID) {
         this.isInBasketID = isInBasketID;
-        return this;
     }
 
     public Basket getBasketID() {
         return basketID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param basketID
-     * @return IsInBasket
-     */
-    public IsInBasket setBasketID(Basket basketID) {
+    public void setBasketID(Basket basketID) {
         this.basketID = basketID;
-        return this;
     }
 
     public ProductItem getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID 
-     * @return IsInBasket
-     */
-    public IsInBasket setProductItemID(ProductItem productItemID) {
+    public void setProductItemID(ProductItem productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     @Override

@@ -62,60 +62,32 @@ public class CategoryAttribute implements Serializable {
         return description;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param description 
-     * @return CategoryAttribute
-     */
-    public CategoryAttribute setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param name 
-     * @return CategoryAttribute
-     */
-    public CategoryAttribute setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public Integer getCategoryAttributeID() {
         return categoryAttributeID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param categoryAttributeID 
-     * @return CategoryAttribute
-     */
-    public CategoryAttribute setCategoryAttributeID(Integer categoryAttributeID) {
+    public void setCategoryAttributeID(Integer categoryAttributeID) {
         this.categoryAttributeID = categoryAttributeID;
-        return this;
     }
 
     public Category getCategoryID() {
         return categoryID;
     }
-
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param categoryID 
-     * @return CategoryAttribute
-     */
-    public CategoryAttribute setCategoryID(Category categoryID) {
+    
+    public void setCategoryID(Category categoryID) {
         this.categoryID = categoryID;
-        return this;
     }
 
     @Override

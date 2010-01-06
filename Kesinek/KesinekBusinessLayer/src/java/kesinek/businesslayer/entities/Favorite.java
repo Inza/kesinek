@@ -53,30 +53,16 @@ public class Favorite implements Serializable {
         return favoritesID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param favoritesID
-     * @return Favorite
-     */
-    public Favorite setFavoritesID(Integer favoritesID) {
+    public void setFavoritesID(Integer favoritesID) {
         this.favoritesID = favoritesID;
-        return this;
     }
 
     public String getFavoritesName() {
         return favoritesName;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param favoritesName 
-     * @return Favorite
-     */
-    public Favorite setFavoritesName(String favoritesName) {
+    public void setFavoritesName(String favoritesName) {
         this.favoritesName = favoritesName;
-        return this;
     }
 
     @Override

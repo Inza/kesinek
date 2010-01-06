@@ -62,60 +62,32 @@ public class ProductAttribute implements Serializable {
         return attributeValue;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param attributeValue  
-     * @return ProductAttribute
-     */
-    public ProductAttribute setAttributeValue(String attributeValue) {
+    public void setAttributeValue(String attributeValue) {
         this.attributeValue = attributeValue;
-        return this;
     }
 
     public Integer getProductAttributeID() {
         return productAttributeID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productAttributeID 
-     * @return ProductAttribute
-     */
-    public ProductAttribute setProductAttributeID(Integer productAttributeID) {
+    public void setProductAttributeID(Integer productAttributeID) {
         this.productAttributeID = productAttributeID;
-        return this;
     }
 
     public int getProductItemID() {
         return productItemID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param productItemID 
-     * @return ProductAttribute
-     */
-    public ProductAttribute setProductItemID(int productItemID) {
+    public void setProductItemID(int productItemID) {
         this.productItemID = productItemID;
-        return this;
     }
 
     public int getCategoryAttributeID() {
         return categoryAttributeID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param categoryAttributeID 
-     * @return ProductAttribute
-     */
-    public ProductAttribute setCategoryAttributeID(int categoryAttributeID) {
+    public void setCategoryAttributeID(int categoryAttributeID) {
         this.categoryAttributeID = categoryAttributeID;
-        return this;
     }
 
     @Override

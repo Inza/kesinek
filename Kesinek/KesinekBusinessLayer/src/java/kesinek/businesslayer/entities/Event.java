@@ -68,60 +68,32 @@ public class Event implements Serializable {
         return date;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param date
-     * @return Event
-     */
-    public Event setDate(Date date) {
+    public void setDate(Date date) {
         this.date = date;
-        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param text
-     * @return Event
-     */
-    public Event setText(String text) {
+    public void setText(String text) {
         this.text = text;
-        return this;
     }
 
     public Integer getEventID() {
         return eventID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param eventID 
-     * @return Event
-     */
-    public Event setEventID(Integer eventID) {
+    public void setEventID(Integer eventID) {
         this.eventID = eventID;
-        return this;
     }
 
     public User getUserID() {
         return userID;
     }
 
-    /**
-     * NOTE: Provides fluent interface (means that you can chain setter calling)
-     *
-     * @param userID 
-     * @return Event
-     */
-    public Event setUserID(User userID) {
+    public void setUserID(User userID) {
         this.userID = userID;
-        return this;
     }
 
     @Override
