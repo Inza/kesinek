@@ -30,14 +30,14 @@ public interface FavoritesBeanLocal {
      *
      * @param favorites
      */
-    void addFavorite(Favorite favorites);
+    public void addFavorite(Favorite favorites);
 
     /**
      * Will remove desired favorite from the system
      *
      * @param favorites
      */
-    void removeFavorite(Favorite favorites);
+    public void removeFavorite(Favorite favorites);
 
     /**
      * Will add desired product to desired favorite list
@@ -45,7 +45,7 @@ public interface FavoritesBeanLocal {
      * @param product
      * @param favorites
      */
-    void addProductToFavorites(ProductItem product, Favorite favorites);
+    public void addProductToFavorites(ProductItem product, Favorite favorites);
 
     /**
      * Will remove desired product from desired favorite list
@@ -53,7 +53,7 @@ public interface FavoritesBeanLocal {
      * @param product
      * @param favorites
      */
-    void removeProductFromFavorites(ProductItem product, Favorite favorites);
+    public void removeProductFromFavorites(ProductItem product, Favorite favorites);
 
     /**
      * Will increment desired product evaluation in desired favorite list
@@ -61,7 +61,7 @@ public interface FavoritesBeanLocal {
      * @param product
      * @param favorites
      */
-    void incrementProductEvaluation(ProductItem product, Favorite favorites);
+    public void incrementProductEvaluation(ProductItem product, Favorite favorites);
 
     /**
      * Will increment desired product evaluation in desired favorite list
@@ -69,7 +69,7 @@ public interface FavoritesBeanLocal {
      * @param product
      * @param favorites
      */
-    void decrementProductEvaluation(ProductItem product, Favorite favorites);
+    public void decrementProductEvaluation(ProductItem product, Favorite favorites);
 
     /**
      * Will list of most favorite products in given favorite
@@ -78,6 +78,6 @@ public interface FavoritesBeanLocal {
      * @param number How many product do you want to have?
      * @return Collection<ProductItem>
      */
-    Collection<ProductItem> getMostFavoriteProducts(Favorite favorite, Integer number);
+    public Collection<ProductItem> getMostFavoriteProducts(Favorite favorite, Integer number);
     
 }

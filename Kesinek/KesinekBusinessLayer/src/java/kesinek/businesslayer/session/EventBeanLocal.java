@@ -30,14 +30,14 @@ public interface EventBeanLocal {
      *
      * @param event
      */
-    void addEvent(Event event);
+    public void addEvent(Event event);
 
     /**
      * Will remove desired event from the system
      *
      * @param event
      */
-    void removeEvent(Event event);
+    public void removeEvent(Event event);
 
     /**
      * Will find all events in the system

@@ -33,14 +33,14 @@ public interface ProductBeanLocal {
      *
      * @param product
      */
-    void addProduct(ProductItem product);
+    public void addProduct(ProductItem product);
 
     /**
      * Will remove desired product from the system
      *
      * @param product
      */
-    void removeProduct(ProductItem product);
+    public void removeProduct(ProductItem product);
 
     /**
      * Will add desired product to desired category
@@ -48,7 +48,7 @@ public interface ProductBeanLocal {
      * @param product
      * @param category
      */
-    void assignProductToCategory(ProductItem product, Category category);
+    public void assignProductToCategory(ProductItem product, Category category);
 
     /**
      * Will remove desired product from the desired category
@@ -56,7 +56,7 @@ public interface ProductBeanLocal {
      * @param product
      * @param category
      */
-    void removeProductFromCategory(ProductItem product, Category category);
+    public void removeProductFromCategory(ProductItem product, Category category);
 
     /**
      * Will set desired product attribute to desired product
@@ -64,35 +64,35 @@ public interface ProductBeanLocal {
      * @param attribute
      * @param product
      */
-    void setProductAttribute(ProductAttribute attribute, ProductItem product);
+    public void setProductAttribute(ProductAttribute attribute, ProductItem product);
 
     /**
      * Will add desired warehouse to the system
      *
      * @param warehouse 
      */
-    void addWarehouse(Warehouse warehouse);
+    public void addWarehouse(Warehouse warehouse);
 
     /**
      * Will remove desired warehouse from the system
      *
      * @param warehouse 
      */
-    void removeWarehouse(Warehouse warehouse);
+    public void removeWarehouse(Warehouse warehouse);
 
     /**
      * Will add desired manufacturer to the system
      *
      * @param manufacturer 
      */
-    void addManufacturer(Manufacturer manufacturer);
+    public void addManufacturer(Manufacturer manufacturer);
 
     /**
      * Will remove desired manufacturer to the system
      *
      * @param manufacturer 
      */
-    void removeManufacturer(Manufacturer manufacturer);
+    public void removeManufacturer(Manufacturer manufacturer);
 
     /**
      * Will find all manufacturers in the system

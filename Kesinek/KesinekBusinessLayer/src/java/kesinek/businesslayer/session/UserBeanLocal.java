@@ -28,28 +28,28 @@ public interface UserBeanLocal {
      *
      * @param user
      */
-    void addUser(User user);
+    public void addUser(User user);
 
     /**
      * Will remove desired user from the system
      *
      * @param user
      */
-    void removeUser(User user);
+    public void removeUser(User user);
 
     /**
      * Will update desired user in the system
      *
      * @param user
      */
-    void updateUser(User user);
+    public void updateUser(User user);
 
     /**
      * Will load all users in the system
      *
      * @return Collection<User>
      */
-    Collection<User> getAllUsers();
+    public Collection<User> getAllUsers();
 
     /**
      * Will find an user in the system
@@ -65,7 +65,7 @@ public interface UserBeanLocal {
      * @param user
      * @param role
      */
-    void addUserToRole(User user, Role role);
+    public void addUserToRole(User user, Role role);
 
     /**
      * Will remove desired user from desired role
@@ -73,26 +73,26 @@ public interface UserBeanLocal {
      * @param user
      * @param role
      */
-    void removeUserFromRole(User user, Role role);
+    public void removeUserFromRole(User user, Role role);
 
     /**
      * Will an user to the system
      *
      * @param role
      */
-    void addRole(Role role);
+    public void addRole(Role role);
 
     /**
      * Will remove desired user from the system
      *
      * @param role
      */
-    void removeRole(Role role);
+    public void removeRole(Role role);
 
     /**
      * Will load all roles in the system
      *
      * @return Collection<User>
      */
-    Collection<Role> getAllRoles();
+    public Collection<Role> getAllRoles();
 }

@@ -56,5 +56,20 @@ public class WishlistBean implements WishlistBeanLocal {
         wishlist = em.merge(wishlist);
         em.remove(wishlist);
     }
+
+    public void addProductToWishlist(ProductItem product, User user) {
+        Wishlist w = this.getWishlistByUser(user);
+        if(w == null) { // Will create a user's wishlist if it doesn't exist
+            w = new Wishlist();
+            w.setUserID(user.getUserID());
+            this.addWishlist(w);
+        }
+        this.addProductToWishlist(product, w);
+    }
+
+    public void removeProductFromWishlist(ProductItem product, User user) {
+        // presumes that at least one user's wishlist already exists
+        this.removeProductFromWishlist(product, this.getWishlistByUser(user));
+    }
  
 }

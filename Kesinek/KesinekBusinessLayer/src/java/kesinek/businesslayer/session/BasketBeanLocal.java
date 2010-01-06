@@ -31,7 +31,7 @@ public interface BasketBeanLocal {
      * @param product
      * @param basket
      */
-    void addProductToBasket(ProductItem product, Basket basket);
+    public void addProductToBasket(ProductItem product, Basket basket);
 
     /**
      * Will remove desired product from desired basket
@@ -39,7 +39,7 @@ public interface BasketBeanLocal {
      * @param product
      * @param basket
      */
-    void removeProductFromBasket(ProductItem product, Basket basket);
+    public void removeProductFromBasket(ProductItem product, Basket basket);
 
     /**
      * Will add desired product to desired user's basket
@@ -47,7 +47,7 @@ public interface BasketBeanLocal {
      * @param product
      * @param user
      */
-    void addProductToBasket(ProductItem product, User user);
+    public void addProductToBasket(ProductItem product, User user);
 
     /**
      * Will remove desired product from desired user's basket
@@ -55,21 +55,21 @@ public interface BasketBeanLocal {
      * @param product
      * @param user
      */
-    void removeProductFromBasket(ProductItem product, User user);
+    public void removeProductFromBasket(ProductItem product, User user);
 
     /**
      * Will add desired basket to the system
      *
      * @param basket
      */
-    void addBasket(Basket basket);
+    public void addBasket(Basket basket);
 
     /**
      * Will remove desired basket from the system
      *
      * @param basket
      */
-    void removeBasket(Basket basket);
+    public void removeBasket(Basket basket);
 
     /**
      * Will find all baskets in the system

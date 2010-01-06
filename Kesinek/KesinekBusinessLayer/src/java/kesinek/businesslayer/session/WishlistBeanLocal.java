@@ -30,37 +30,53 @@ public interface WishlistBeanLocal {
      *
      * @param wishlist
      */
-    void addWishlist(Wishlist wishlist);
+    public void addWishlist(Wishlist wishlist);
 
     /**
      * Will remove desired wishlist from the system
      *
      * @param wishlist
      */
-    void removeWishlist(Wishlist wishlist);
+    public void removeWishlist(Wishlist wishlist);
 
     /**
      * Will add desired product to desired wishlist
-     * 
-     * @param product
-     * @param wishlist
-     */
-    void addProductToWishlist(ProductItem product, Wishlist wishlist);
-
-    /**
-     * Will remove desired product to desired wishlist
      *
      * @param product
      * @param wishlist
      */
-    void removeProductFromWishlist(ProductItem product, Wishlist wishlist);
+    public void addProductToWishlist(ProductItem product, Wishlist wishlist);
+
+    /**
+     * Will remove desired product from desired wishlist
+     *
+     * @param product
+     * @param wishlist
+     */
+    public void removeProductFromWishlist(ProductItem product, Wishlist wishlist);
+
+    /**
+     * Will add desired product to desired user's wishlist
+     *
+     * @param product
+     * @param user
+     */
+    public void addProductToWishlist(ProductItem product, User user);
+
+    /**
+     * Will remove desired product from desired user's wishlist
+     *
+     * @param product
+     * @param user
+     */
+    public void removeProductFromWishlist(ProductItem product, User user);
 
     /**
      * Will load all wishlist from the system
      *
      * @return Collection<Wishlist>
      */
-    Collection<Wishlist> getAllWishlists();
+    public Collection<Wishlist> getAllWishlists();
 
     /**
      * Will a wishlist of desired user
@@ -68,6 +84,6 @@ public interface WishlistBeanLocal {
      * @param user
      * @return Wishlist
      */
-    Wishlist getWishlistByUser(User user);
+    public Wishlist getWishlistByUser(User user);
     
 }

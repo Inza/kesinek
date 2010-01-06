@@ -29,7 +29,7 @@ public interface CategoryBeanLocal {
      * 
      * @param attribute
      */
-    void addCategoryAttribute(CategoryAttribute attribute);
+    public void addCategoryAttribute(CategoryAttribute attribute);
 
     /**
      * Will add new category attribute to the given category
@@ -37,7 +37,7 @@ public interface CategoryBeanLocal {
      * @param category
      * @param attribute
      */
-    void addCategoryAttribute(Category category, CategoryAttribute attribute);
+    public void addCategoryAttribute(Category category, CategoryAttribute attribute);
 
     /**
      * Will remove a category attribute from given category
@@ -45,28 +45,28 @@ public interface CategoryBeanLocal {
      * @param category
      * @param attribute
      */
-    void removeCategoryAttribute(Category category, CategoryAttribute attribute);
+    public void removeCategoryAttribute(Category category, CategoryAttribute attribute);
 
     /**
      * Will remove a category attribute from the system
      *
      * @param attribute
      */
-    void removeCategoryAttribute(CategoryAttribute attribute);
+    public void removeCategoryAttribute(CategoryAttribute attribute);
 
     /**
      * Will add new category to the system
      *
      * @param category
      */
-    void addCategory(Category category);
+    public void addCategory(Category category);
 
     /**
      * Will remove a category from the system
      *
      * @param category
      */
-    void removeCategory(Category category);
+    public void removeCategory(Category category);
 
     /**
      * Will find all a categories in the system
