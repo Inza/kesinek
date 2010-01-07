@@ -176,4 +176,12 @@ public interface ProductBeanLocal {
      * @return List<Warehouse>
      */
     public List<Warehouse> findAllWarehouses();
+
+    /**
+     * Will find all attributes of product detail
+     *
+     * @param product 
+     * @return List<ProductAttribute>
+     */
+    public List<ProductAttribute> productDetail(ProductItem product);
 }

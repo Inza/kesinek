@@ -6,11 +6,13 @@
 
 package kesinek.businesslayer.session;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Category;
+import kesinek.businesslayer.entities.CategoryAttribute;
 import kesinek.businesslayer.entities.IsInCategory;
 import kesinek.businesslayer.entities.Manufacturer;
 import kesinek.businesslayer.entities.ProductAttribute;
@@ -97,7 +99,7 @@ public class ProductBean implements ProductBeanLocal {
     @SuppressWarnings("unchecked")
     public List<ProductItem> findProductsByName(String name) {
         return em.createNamedQuery("ProductItem.findAllByName")
-                .setParameter("name", name)
+                .setParameter("name", "%" + name + "%")
         .getResultList();
     }
 
@@ -131,6 +133,33 @@ public class ProductBean implements ProductBeanLocal {
     @SuppressWarnings("unchecked")
     public List<Warehouse> findAllWarehouses() {
         return em.createNamedQuery("Warehouse.findAll").getResultList();
+    }
+
+    public List<ProductAttribute> productDetail(ProductItem product) {
+        @SuppressWarnings("unchecked")
+        ArrayList<Category> categories = (ArrayList<Category>) em.createNamedQuery("ProductItem.findCategories").setParameter("productItemID", product).getResultList();
+
+        ArrayList<CategoryAttribute> attrs = new ArrayList<CategoryAttribute>();
+
+        for(Category c : categories) {
+            attrs.addAll(c.getCategoryAttributeCollection());
+        }
+
+        ArrayList<ProductAttribute> candidates = new ArrayList<ProductAttribute>();
+
+        for(CategoryAttribute a : attrs) {
+            candidates.add((ProductAttribute) new CategoryBean().findAllProductAttributes(a.getCategoryAttributeID()));
+        }
+
+        ArrayList<ProductAttribute> result = new ArrayList<ProductAttribute>();
+
+        for(ProductAttribute pr : candidates) {
+            if(pr.getProductItemID() == product.getProductItemID()) {
+                result.add(pr);
+            }
+        }
+
+        return result;
     }
  
 }

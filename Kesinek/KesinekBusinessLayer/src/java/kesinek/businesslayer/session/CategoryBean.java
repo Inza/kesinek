@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Category;
 import kesinek.businesslayer.entities.CategoryAttribute;
+import kesinek.businesslayer.entities.ProductAttribute;
 
 @Stateless
 public class CategoryBean implements CategoryBeanLocal {
@@ -46,6 +47,10 @@ public class CategoryBean implements CategoryBeanLocal {
 
     public Category findCategoryByID(int id) {
         return em.getReference(Category.class, id);
+    }
+
+    public CategoryAttribute findCategoryAttributeByID(int id) {
+        return em.getReference(CategoryAttribute.class, id);
     }
 
     public void addCategoryAttribute(CategoryAttribute attribute) {
@@ -81,5 +86,10 @@ public class CategoryBean implements CategoryBeanLocal {
     @SuppressWarnings("unchecked")
     public List<CategoryAttribute> findAllCategoryAttributes(int categoryId) {
         return em.createNamedQuery("Category.findAllAttributes").setParameter("categoryID", categoryId).getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ProductAttribute> findAllProductAttributes(int categoryAttributeId) {
+        return em.createNamedQuery("ProductAttribute.findByCategoryAttributeID").setParameter("categoryAtributeID", categoryAttributeId).getResultList();
     }
 }

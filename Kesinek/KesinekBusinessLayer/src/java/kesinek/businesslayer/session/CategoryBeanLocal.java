@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Category;
 import kesinek.businesslayer.entities.CategoryAttribute;
+import kesinek.businesslayer.entities.ProductAttribute;
 
 /**
  * Handles BL for Category entity class
@@ -84,6 +85,14 @@ public interface CategoryBeanLocal {
     public Category findCategoryByID(int id);
 
     /**
+     * Will find a category in the system
+     *
+     * @param id
+     * @return CategoryAttribute
+     */
+    public CategoryAttribute findCategoryAttributeByID(int id);
+
+    /**
      * Will update a category in the system
      *
      * @param category
@@ -97,5 +106,13 @@ public interface CategoryBeanLocal {
      * @return List<CategoryAttribute>
      */
     public List<CategoryAttribute> findAllCategoryAttributes(int categoryId);
+
+    /**
+     * Will find all product attributes of given category attribute
+     *
+     * @param categoryAttributeId
+     * @return List<ProductAttribute>
+     */
+    public List<ProductAttribute> findAllProductAttributes(int categoryAttributeId);
     
 }
