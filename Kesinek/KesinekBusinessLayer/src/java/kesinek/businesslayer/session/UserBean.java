@@ -6,6 +6,7 @@
 
 package kesinek.businesslayer.session;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,8 +54,13 @@ public class UserBean implements UserBeanLocal {
     }
 
     @SuppressWarnings("unchecked")
-    public Collection<Role> getAllRoles() {
-        return em.createNamedQuery("Role.findAll").getResultList();
+    public Collection<userRole> getAllRoles() {
+        ArrayList<userRole> roles = new ArrayList<userRole>();
+
+        roles.add(userRole.ADMIN);
+        roles.add(userRole.USER);
+
+        return roles;
     }
 
     public void updateUser(User user) {
@@ -69,5 +75,7 @@ public class UserBean implements UserBeanLocal {
     public User findUserByName(String name) {
         return (User) em.createNamedQuery("User.findByUsername").setParameter("username", name).getSingleResult();
     }
+
+    public enum userRole { ADMIN, USER }
  
 }

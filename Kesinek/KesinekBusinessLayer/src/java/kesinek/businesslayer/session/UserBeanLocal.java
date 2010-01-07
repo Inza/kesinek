@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Role;
 import kesinek.businesslayer.entities.User;
+import kesinek.businesslayer.session.UserBean.userRole;
 
 /**
  * Handles BL for User and Role entity classes
@@ -87,8 +88,8 @@ public interface UserBeanLocal {
     /**
      * Will load all roles in the system
      *
-     * @return Collection<User>
+     * @return Collection<userRole>
      */
-    public Collection<Role> getAllRoles();
+    public Collection<userRole> getAllRoles();
 
 }
