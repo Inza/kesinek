@@ -69,7 +69,7 @@ public class BasketBean implements BasketBeanLocal {
     public Basket findBasketByUser(User user) {
         try
         {
-            return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+            return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user).getSingleResult();
         }
         catch(NoResultException e)
         {
@@ -122,8 +122,14 @@ public class BasketBean implements BasketBeanLocal {
         pp2.setPrice(400);
         pp2.setManufacturerID(1);
         pp2.setWarehouseID(1);
+        ProductItem pp3 = new ProductItem();
+        pp3.setName("pokus2");
+        pp3.setPrice(400);
+        pp3.setManufacturerID(1);
+        pp3.setWarehouseID(1);
         productBean.addProduct(pp1);
         productBean.addProduct(pp2);
+        productBean.addProduct(pp3);
 
         productBean.removeProduct(pp2);
 
@@ -131,9 +137,13 @@ public class BasketBean implements BasketBeanLocal {
         bb.setUserID(uu);
         basketBean.addBasket(bb);
 
-        basketBean.addProductToBasket(pp1, uu);
+        //basketBean.addProductToBasket(pp1, uu);
+        //basketBean.addProductToBasket(pp3, uu);
+        //basketBean.removeProductFromBasket(pp3, uu);
 
+        List<ProductItem> l = (List<ProductItem>) basketBean.findProductsInBasket(basketBean.findBasketByUser(uu));
 
+        basketBean.removeProductFromBasket(l.get(0), uu);
     }
     
 }
