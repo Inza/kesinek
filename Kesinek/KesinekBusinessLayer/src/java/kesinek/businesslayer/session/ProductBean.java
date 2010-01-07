@@ -119,5 +119,18 @@ public class ProductBean implements ProductBeanLocal {
                 .setParameter("name", name)
         .getSingleResult();
     }
+
+    public void updateWarehouse(Warehouse warehouse) {
+        em.createNamedQuery("Warehouse.update")
+                .setParameter("description", warehouse.getDescription())
+                .setParameter("warehouseID", warehouse.getWarehouseID())
+        .executeUpdate();
+        em.merge(warehouse);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Warehouse> findAllWarehouses() {
+        return em.createNamedQuery("Warehouse.findAll").getResultList();
+    }
  
 }

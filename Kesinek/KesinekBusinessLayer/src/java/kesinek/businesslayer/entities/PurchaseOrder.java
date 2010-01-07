@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PurchaseOrder", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "PurchaseOrder.findRelatedProducts", query = "SELECT pr FROM PurchaseOrder p JOIN p.isInPurchaseOrderCollection r JOIN r.productItemID pr WHERE p.purchaseOrderID = :purchaseOrderID"),
     @NamedQuery(name = "PurchaseOrder.findAll", query = "SELECT p FROM PurchaseOrder p"),
     @NamedQuery(name = "PurchaseOrder.findByPurchaseOrderID", query = "SELECT p FROM PurchaseOrder p WHERE p.purchaseOrderID = :purchaseOrderID"),
     @NamedQuery(name = "PurchaseOrder.findByUserID", query = "SELECT p FROM PurchaseOrder p WHERE p.userID = :userID")})
@@ -36,6 +37,9 @@ public class PurchaseOrder implements Serializable {
     @Basic(optional = false)
     @Column(name = "purchaseOrderID", nullable = false)
     private Integer purchaseOrderID;
+    @Basic(optional = false)
+    @Column(name = "ostate", nullable = false, length=100)
+    private String state;
     @Basic(optional = false)
     @Column(name = "userID", nullable = false)
     private int userID;
@@ -60,6 +64,14 @@ public class PurchaseOrder implements Serializable {
 
     public void setPurchaseOrderID(Integer purchaseOrderID) {
         this.purchaseOrderID = purchaseOrderID;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getUserID() {

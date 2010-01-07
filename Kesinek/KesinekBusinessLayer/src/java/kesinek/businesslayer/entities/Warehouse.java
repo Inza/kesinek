@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Warehouse", catalog = "kesinek", schema = "")
 @NamedQueries({
+    @NamedQuery(name = "Warehouse.update", query = "UPDATE Warehouse w SET w.description = :description WHERE w.warehouseID = :warehouseID"),
     @NamedQuery(name = "Warehouse.findAll", query = "SELECT w FROM Warehouse w"),
     @NamedQuery(name = "Warehouse.findByWarehouseID", query = "SELECT w FROM Warehouse w WHERE w.warehouseID = :warehouseID")})
 public class Warehouse implements Serializable {

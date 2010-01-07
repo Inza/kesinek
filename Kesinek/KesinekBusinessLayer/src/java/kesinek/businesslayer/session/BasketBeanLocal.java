@@ -6,6 +6,7 @@
 
 package kesinek.businesslayer.session;
 
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Basket;
@@ -93,6 +94,14 @@ public interface BasketBeanLocal {
      * @return Basket
      */
     public Basket findBasketByUser(User user);
+
+    /**
+     * Will find all products in desired basket
+     *
+     * @param basket
+     * @return Collection<ProductItem>
+     */
+    public Collection<ProductItem> findProductsInBasket(Basket basket);
 
     /**
      * Will update desired basket in the system

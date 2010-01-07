@@ -157,9 +157,23 @@ public interface ProductBeanLocal {
     public ProductItem findProductByID(int id);
 
     /**
-     * Will a manufacturer in the system
+     * Will update a manufacturer in the system
      *
      * @param manufacturer
      */
     public void updateManufacturer(Manufacturer manufacturer);
+
+    /**
+     * Will update a warehouse in the system
+     *
+     * @param warehouse
+     */
+    public void updateWarehouse(Warehouse warehouse);
+
+    /**
+     * Will find all warehouses in the system
+     *
+     * @return List<Warehouse>
+     */
+    public List<Warehouse> findAllWarehouses();
 }

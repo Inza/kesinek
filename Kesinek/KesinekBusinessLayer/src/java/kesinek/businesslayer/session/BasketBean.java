@@ -9,6 +9,7 @@
 
 package kesinek.businesslayer.session;
 
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -82,6 +83,11 @@ public class BasketBean implements BasketBeanLocal {
     public void removeProductFromBasket(ProductItem product, User user) {
         // presumes that at least one user's basket already exists
         this.removeProductFromBasket(product, this.findBasketByUser(user));
+    }
+
+    @SuppressWarnings("unchecked")
+    public Collection<ProductItem> findProductsInBasket(Basket basket) {
+        return em.createNamedQuery("Basket.findRelatedProducts").setParameter("basketID", basket.getBasketID()).getResultList();
     }
     
 }
