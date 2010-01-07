@@ -106,11 +106,12 @@ public class BasketBean implements BasketBeanLocal {
     }
 
     public void test() {
-        User uu = new User();
-        uu.setAddress("pokus");
-        uu.setPassword("test");
-        uu.setUsername("bar");
-        userBean.addUser(uu);
+        User uu = userBean.findUserByName("man");
+        //User uu = new User();
+        //uu.setAddress("pokus");
+        //uu.setPassword("test");
+        //uu.setUsername("bar");
+        //userBean.addUser(uu);
 
         ProductItem pp1 = new ProductItem();
         pp1.setName("pokus");
@@ -133,9 +134,9 @@ public class BasketBean implements BasketBeanLocal {
 
         productBean.removeProduct(pp2);
 
-        Basket bb = new Basket(10);
-        bb.setUserID(uu);
-        basketBean.addBasket(bb);
+        Basket bb = basketBean.findBasketByUser(uu);
+        //bb.setUserID(uu);
+        //basketBean.addBasket(bb);
 
         //basketBean.addProductToBasket(pp1, uu);
         //basketBean.addProductToBasket(pp3, uu);

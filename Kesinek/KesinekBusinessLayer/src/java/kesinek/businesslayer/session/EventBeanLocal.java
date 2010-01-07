@@ -9,6 +9,7 @@ package kesinek.businesslayer.session;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
+import javax.ejb.Timer;
 import javax.persistence.TemporalType;
 import kesinek.businesslayer.entities.Event;
 
@@ -73,5 +74,11 @@ public interface EventBeanLocal {
 
     // There is intentionally no way how to update an existing event
     // Events are created automatically and there is no need for update them
+
+    public boolean isRunning();
+
+    public void removeTimer();
+
+    public void createTimer(long intervalDuration);
     
 }
