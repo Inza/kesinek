@@ -114,5 +114,9 @@ public interface CategoryBeanLocal {
      * @return List<ProductAttribute>
      */
     public List<ProductAttribute> findAllProductAttributes(int categoryAttributeId);
+
+    public void updateCategoryAttribute(CategoryAttribute attribute);
+
+    public List<CategoryAttribute> findAllCategoryAttributes();
     
 }

@@ -27,6 +27,7 @@
                         <h:outputText value="Kesinek Administration" />
                     </f:facet>
                     <h:commandLink action="category" value="Category Managment" />
+                    <h:commandLink action="#{categoryBean.test}" value="Test" />
                     <br />
                     <h:commandLink action="manufacturer" value="Manufacturers Managment" />
                 </rich:panel>

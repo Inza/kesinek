@@ -67,7 +67,7 @@ public class UserBean implements UserBeanLocal {
     }
 
     public User findUserByName(String name) {
-        return (User) em.createNamedQuery("User.findByUsername").getSingleResult();
+        return (User) em.createNamedQuery("User.findByUsername").setParameter("username", name).getSingleResult();
     }
  
 }

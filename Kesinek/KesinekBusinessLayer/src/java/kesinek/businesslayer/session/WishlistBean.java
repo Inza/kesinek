@@ -46,12 +46,19 @@ public class WishlistBean implements WishlistBeanLocal {
     }
 
     public Wishlist getWishlistByUser(User user) {
-        return (Wishlist) em.createNamedQuery("Wishlist.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+        try
+        {
+            return (Wishlist) em.createNamedQuery("Wishlist.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @SuppressWarnings("unchecked")
     public Collection<ProductItem> getProductsInWishlist(Wishlist wishlist) {
-        return em.createNamedQuery("Wishlist.findRelatedProducts").setParameter("wishlistID", wishlist.getWishlistID()).getResultList();
+        return em.createNamedQuery("Wishlist.findRelatedProducts").setParameter("wishlistID", wishlist).getResultList();
     }
 
     @SuppressWarnings("unchecked")

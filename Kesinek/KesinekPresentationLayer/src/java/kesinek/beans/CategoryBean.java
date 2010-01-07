@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import kesinek.businesslayer.entities.Category;
+import kesinek.businesslayer.session.BasketBeanLocal;
 import kesinek.businesslayer.session.CategoryBeanLocal;
 
 /**
@@ -19,6 +20,8 @@ public class CategoryBean {
     // Init
     @EJB
     private CategoryBeanLocal categoryBean;
+    @EJB
+    private BasketBeanLocal basketBean;
     private Category category = new Category();
     private int id;
 
@@ -66,6 +69,12 @@ public class CategoryBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String test() {
+        basketBean.test();
+
+        return "index";
     }
 
 

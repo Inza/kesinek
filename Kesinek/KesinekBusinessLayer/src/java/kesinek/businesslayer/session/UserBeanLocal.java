@@ -7,6 +7,7 @@
 package kesinek.businesslayer.session;
 
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Local;
 import kesinek.businesslayer.entities.Role;
 import kesinek.businesslayer.entities.User;
@@ -89,4 +90,5 @@ public interface UserBeanLocal {
      * @return Collection<User>
      */
     public Collection<Role> getAllRoles();
+
 }

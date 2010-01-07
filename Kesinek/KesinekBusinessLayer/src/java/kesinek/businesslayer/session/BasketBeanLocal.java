@@ -109,5 +109,7 @@ public interface BasketBeanLocal {
      * @param basket
      */
     public void updateBasket(Basket basket);
+
+    public void test();
     
 }

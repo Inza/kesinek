@@ -11,8 +11,10 @@ package kesinek.businesslayer.session;
 
 import java.util.Collection;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import kesinek.businesslayer.entities.Basket;
 import kesinek.businesslayer.entities.IsInBasket;
@@ -21,6 +23,12 @@ import kesinek.businesslayer.entities.User;
 
 @Stateless
 public class BasketBean implements BasketBeanLocal {
+    @EJB
+    private UserBeanLocal userBean;
+    @EJB
+    private ProductBeanLocal productBean;
+    @EJB
+    private BasketBeanLocal basketBean;
 
     @PersistenceContext
     private EntityManager em;
@@ -59,7 +67,14 @@ public class BasketBean implements BasketBeanLocal {
     }
 
     public Basket findBasketByUser(User user) {
-        return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+        try
+        {
+            return (Basket) em.createNamedQuery("Basket.findByUserID").setParameter("userID", user.getUserID()).getSingleResult();
+        }
+        catch(NoResultException e)
+        {
+            return null;
+        }
     }
 
     public void updateBasket(Basket basket) {
@@ -88,6 +103,37 @@ public class BasketBean implements BasketBeanLocal {
     @SuppressWarnings("unchecked")
     public Collection<ProductItem> findProductsInBasket(Basket basket) {
         return em.createNamedQuery("Basket.findRelatedProducts").setParameter("basketID", basket.getBasketID()).getResultList();
+    }
+
+    public void test() {
+        User uu = new User();
+        uu.setAddress("pokus");
+        uu.setPassword("test");
+        uu.setUsername("bar");
+        userBean.addUser(uu);
+
+        ProductItem pp1 = new ProductItem();
+        pp1.setName("pokus");
+        pp1.setPrice(400);
+        pp1.setManufacturerID(1);
+        pp1.setWarehouseID(1);
+        ProductItem pp2 = new ProductItem();
+        pp2.setName("pokus1");
+        pp2.setPrice(400);
+        pp2.setManufacturerID(1);
+        pp2.setWarehouseID(1);
+        productBean.addProduct(pp1);
+        productBean.addProduct(pp2);
+
+        productBean.removeProduct(pp2);
+
+        Basket bb = new Basket(10);
+        bb.setUserID(uu);
+        basketBean.addBasket(bb);
+
+        basketBean.addProductToBasket(pp1, uu);
+
+
     }
     
 }

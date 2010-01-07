@@ -32,11 +32,7 @@ public class CategoryBean implements CategoryBeanLocal {
     }
 
     public void updateCategory(Category category) {
-        em.createNamedQuery("Category.update")
-                .setParameter("name", category.getName())
-                .setParameter("description", category.getDescription())
-                .setParameter("categoryID", category.getCategoryID())
-        .executeUpdate();
+        em.createNamedQuery("Category.update").setParameter("name", category.getName()).setParameter("description", category.getDescription()).setParameter("categoryID", category.getCategoryID()).executeUpdate();
         em.merge(category);
     }
 
@@ -54,6 +50,10 @@ public class CategoryBean implements CategoryBeanLocal {
     }
 
     public void addCategoryAttribute(CategoryAttribute attribute) {
+        System.out.println(attribute.getCategoryAttributeID());
+        System.out.println(attribute.getCategoryID());
+        System.out.println(attribute.getDescription());
+        System.out.println(attribute.getName());
         em.persist(attribute);
     }
 
@@ -79,13 +79,18 @@ public class CategoryBean implements CategoryBeanLocal {
                 .setParameter("description", attribute.getDescription())
                 .setParameter("categoryID", attribute.getCategoryID())
                 .setParameter("categoryAttributeID", attribute.getCategoryAttributeID())
-        .executeUpdate();
+                .executeUpdate();
         em.merge(attribute);
     }
 
     @SuppressWarnings("unchecked")
     public List<CategoryAttribute> findAllCategoryAttributes(int categoryId) {
         return em.createNamedQuery("Category.findAllAttributes").setParameter("categoryID", categoryId).getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CategoryAttribute> findAllCategoryAttributes() {
+        return em.createNamedQuery("CategoryAttribute.findAll").getResultList();
     }
 
     @SuppressWarnings("unchecked")
