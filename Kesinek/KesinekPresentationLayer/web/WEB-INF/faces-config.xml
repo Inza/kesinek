@@ -2,18 +2,144 @@
 
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
-<faces-config version="1.2" 
-              xmlns="http://java.sun.com/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <faces-config version="1.2"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+        <application>
+            <locale-config>
+                <default-locale>cs</default-locale>
+                <supported-locale>en</supported-locale>
+            </locale-config>
+            <resource-bundle>
+                <base-name>kesinek.localization.Navigation</base-name>
+                <var>navigation</var>
+            </resource-bundle>
+            <resource-bundle>
+                <base-name>kesinek.localization.Home</base-name>
+                <var>home</var>
+            </resource-bundle>
+        </application>
+
+        <!-- Validators -->
+
+        <validator>
+            <validator-id>usernameValidator</validator-id>
+            <validator-class>kesinek.validators.UsernameValidator</validator-class>
+        </validator>
+
+        <validator>
+            <validator-id>passwordValidator</validator-id>
+            <validator-class>kesinek.validators.PasswordValidator</validator-class>
+        </validator>
+
+        <managed-bean>
+            <managed-bean-name>CategoryBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.CategoryFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        <managed-bean>
+            <managed-bean-name>ProductBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.ProductFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>showCategory</from-outcome>
+                <to-view-id>/index.jsp</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>showProduct</from-outcome>
+                <to-view-id>/product.jsp</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>basket</from-outcome>
+                <to-view-id>/basket.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>login</from-outcome>
+                <to-view-id>/login.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>wishlist</from-outcome>
+                <to-view-id>/wishlist.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>orders</from-outcome>
+                <to-view-id>/orders.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>order</from-outcome>
+                <to-view-id>/order.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>home</from-outcome>
+                <to-view-id>/index.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>register</from-outcome>
+                <to-view-id>/register.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <navigation-case>
+                <from-outcome>admin</from-outcome>
+                <to-view-id>/admin/index.jsp</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+
+        <managed-bean>
+            <managed-bean-name>UserBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.UserFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        <managed-bean>
+            <managed-bean-name>OrderBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.OrderFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        <managed-bean>
+            <managed-bean-name>WishBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.WishlistFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        <managed-bean>
+            <managed-bean-name>BasketBean</managed-bean-name>
+            <managed-bean-class>kesinek.facesBean.BasketFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+
+        <!-- =========================== VALIDATORS =============================== -->
+    <validator>
+        <validator-id>categoryValidator</validator-id>
+        <validator-class>kesinek.validators.CategoryNameValidator</validator-class>
+    </validator>
+<!-- ========================= FILTERING BEANS ============================ -->
     <managed-bean>
         <managed-bean-name>categoryFilteringBean</managed-bean-name>
         <managed-bean-class>kesinek.filters.CategoryFilteringBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>categoryBean</managed-bean-name>
-        <managed-bean-class>kesinek.beans.CategoryBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
@@ -22,14 +148,48 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>warehouseFilteringBean</managed-bean-name>
+        <managed-bean-class>kesinek.filters.WarehouseFilteringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoryAttributeFilteringBean</managed-bean-name>
+        <managed-bean-class>kesinek.filters.CategoryAttributeFilteringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>UserFilteringBean</managed-bean-name>
+        <managed-bean-class>kesinek.filters.UserFilteringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+<!-- ============================= BEANS ================================== -->
+    <managed-bean>
+        <managed-bean-name>categoryBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.CategoryBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>manufacturerBean</managed-bean-name>
         <managed-bean-class>kesinek.beans.ManufacturerBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-    <validator>
-        <validator-id>categoryValidator</validator-id>
-        <validator-class>kesinek.validators.CategoryNameValidator</validator-class>
-    </validator>
+    <managed-bean>
+        <managed-bean-name>warehouseBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.WarehouseBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoryAttributeBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.CategoryAttributeBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>userBean</managed-bean-name>
+        <managed-bean-class>kesinek.beans.UserBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+<!-- ========================= NAVIGATION RULES =========================== -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INDEX ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
         <from-view-id>/admin/index.jsp</from-view-id>
         <navigation-case>
@@ -42,7 +202,23 @@
             <to-view-id>/admin/manufacturer.jsp</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>warehouse</from-outcome>
+            <to-view-id>/admin/warehouse.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>categoryAttribute</from-outcome>
+            <to-view-id>/admin/categoryattribute.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>user</from-outcome>
+            <to-view-id>/admin/user.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ CATEGORY ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
         <from-view-id>/admin/category.jsp</from-view-id>
         <navigation-case>
@@ -51,6 +227,7 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MANUFACTURER ~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
         <from-view-id>/admin/manufacturer.jsp</from-view-id>
         <navigation-case>
@@ -59,7 +236,40 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
-</faces-config>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ WAREHOUSE ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <navigation-rule>
+        <from-view-id>/admin/warehouse.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~ CATEGORYATTRIBUTE ~~~~~~~~~~~~~~~~~~~~~ -->
+    <navigation-rule>
+        <from-view-id>/admin/categoryattribute.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ USER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <navigation-rule>
+        <from-view-id>/admin/user.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+        <managed-bean>
+            <managed-bean-name>EventBean</managed-bean-name>
+            <managed-bean-class>kesinek.beans.EventFacesBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+    </faces-config>
+
 
 
 

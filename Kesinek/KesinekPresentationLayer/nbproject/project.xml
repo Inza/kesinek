@@ -6,21 +6,17 @@
             <name>KesinekPresentationLayer</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
-                <library dirs="100">
+                <library>
                     <file>${reference.KesinekBusinessLayer.dist}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library dirs="200">
-                    <file>${file.reference.org-netbeans-modules-java-j2seproject-copylibstask.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
+                <library>
                     <file>${libs.jsf12.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library dirs="200">
-                    <file>${libs.RichFaces.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
+                <library>
+                    <file>${file.reference.Kesinek-lib}</file>
+                    <path-in-war>WEB-INF/classes</path-in-war>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>

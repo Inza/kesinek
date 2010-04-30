@@ -157,6 +157,15 @@ exists or setup the property manually. For example like this:
                 <isset property="build.deploy.on.save"/>
             </not>
         </condition>
+        <ant antfile="${project.KesinekApplicationLayer}/build.xml" inheritall="false" target="dist-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
+        </ant>
+        <condition property="build.deploy.on.save" value="false">
+            <not>
+                <isset property="build.deploy.on.save"/>
+            </not>
+        </condition>
         <ant antfile="${project.KesinekBusinessLayer}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
@@ -182,8 +191,9 @@ exists or setup the property manually. For example like this:
         </copy>
     </target>
     <target depends="init,deps-jar,pre-pre-compile,pre-compile" name="-do-compile-deps">
-        <copyfiles files="${reference.KesinekBusinessLayer.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.KesinekPresentationLayer.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.KesinekBusinessLayer.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.KesinekApplicationLayer.j2ee-module-car}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
         <!-- Empty placeholder for easier customization. -->
@@ -260,6 +270,7 @@ exists or setup the property manually. For example like this:
     </target>
     <target name="-run-deploy-am" unless="no.deps">
         <!-- Task to deploy to the Access Manager runtime. -->
+        <ant antfile="${project.KesinekApplicationLayer}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.KesinekBusinessLayer}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.KesinekPresentationLayer}/build.xml" inheritall="false" target="-run-deploy-am"/>
     </target>
@@ -346,6 +357,60 @@ exists or setup the property manually. For example like this:
     <target depends="init" if="app.client" name="run-ac">
         <antcall target="run-${app.client}"/>
     </target>
+    <target depends="-tool2-KesinekApplicationLayer,-old-java-KesinekApplicationLayer" name="run-KesinekApplicationLayer"/>
+    <target if="j2ee.appclient.tool.args" name="-old-java-KesinekApplicationLayer">
+        <antcall target="-tool-KesinekApplicationLayer"/>
+        <antcall target="-java-KesinekApplicationLayer"/>
+    </target>
+    <target depends="-as-retrieve-option-workaround" if="j2ee.appclient.mainclass.args" name="-tool-KesinekApplicationLayer" unless="j2ee.clientName">
+        <java classname="${j2ee.appclient.tool.mainclass}" fork="true">
+            <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
+            <jvmarg line="${j2ee.appclient.tool.jvmoptions}"/>
+            <jvmarg line="${j2ee.appclient.jvmoptions.param}"/>
+            <arg line="${j2ee.appclient.tool.args}"/>
+            <arg line="-client ${client.jar}"/>
+            <arg line="${j2ee.appclient.mainclass.tool.param}"/>
+            <arg line="${application.args.param}"/>
+            <classpath>
+                <path path="${j2ee.platform.classpath}:${j2ee.appclient.tool.runtime}"/>
+            </classpath>
+            <syspropertyset>
+                <propertyref prefix="run-sys-prop."/>
+                <mapper from="run-sys-prop.*" to="*" type="glob"/>
+            </syspropertyset>
+        </java>
+    </target>
+    <target depends="run-deploy,-as-retrieve-option-workaround" if="j2ee.appclient.mainclass.args" name="-tool2-KesinekApplicationLayer" unless="j2ee.appclient.tool.args">
+        <mkdir dir="${dist.dir}/KesinekClient"/>
+        <copy flatten="true" todir="${dist.dir}/KesinekClient">
+            <fileset dir="${wa.copy.client.jar.from}/Kesinek" includes="**/*.*ar"/>
+        </copy>
+        <java dir="${basedir}" fork="true" jar="${client.jar}">
+            <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
+            <jvmarg line="${j2ee.appclient.tool.jvmoptions}${client.jar},arg=-name,arg=KesinekApplicationLayer"/>
+            <arg line="${application.args.param}"/>
+            <syspropertyset>
+                <propertyref prefix="run-sys-prop."/>
+                <mapper from="run-sys-prop.*" to="*" type="glob"/>
+            </syspropertyset>
+        </java>
+    </target>
+    <target if="j2ee.clientName" name="-java-KesinekApplicationLayer" unless="j2ee.appclient.mainclass.args">
+        <java classname="${main.class}" fork="true">
+            <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
+            <jvmarg line="${j2ee.appclient.tool.jvmoptions}"/>
+            <jvmarg line="-Dj2ee.clientName=${app.client}"/>
+            <jvmarg line="${j2ee.appclient.jvmoptions.param}"/>
+            <arg line="${application.args.param}"/>
+            <classpath>
+                <path path="${jar.content.additional}:${j2ee.platform.classpath}:${j2ee.appclient.tool.runtime}"/>
+            </classpath>
+            <syspropertyset>
+                <propertyref prefix="run-sys-prop."/>
+                <mapper from="run-sys-prop.*" to="*" type="glob"/>
+            </syspropertyset>
+        </java>
+    </target>
     <target if="j2ee.appclient.mainclass.args" name="-as-retrieve-option-workaround" unless="j2ee.clientName">
         <property name="client.jar" value="${dist.dir}/KesinekClient.jar"/>
         <sleep seconds="3"/>
@@ -356,7 +421,7 @@ exists or setup the property manually. For example like this:
         <copy flatten="true" todir="${dist.dir}/KesinekClient">
             <fileset dir="${wa.copy.client.jar.from}/Kesinek" includes="**/*.*ar"/>
         </copy>
-        <copy flatten="false" todir="${dist.dir}/KesinekClient">
+        <copy failonerror="false" flatten="false" todir="${dist.dir}/KesinekClient">
             <fileset dir="${dist.dir}/gfdeploy/Kesinek" includes="**/*.jar"/>
         </copy>
     </target>
@@ -437,10 +502,26 @@ exists or setup the property manually. For example like this:
         <nbdeploy clientModuleUri="${client.module.uri}" clientUrlPart="${client.urlPart}" debugmode="false"/>
         <antcall target="debug-${app.client}"/>
     </target>
+    <target depends="-debug-tool-KesinekApplicationLayer,-debug-java-KesinekApplicationLayer" name="debug-KesinekApplicationLayer"/>
+    <target depends="init,-as-retrieve-option-workaround" if="j2ee.appclient.mainclass.args" name="-debug-tool-KesinekApplicationLayer" unless="j2ee.clientName">
+        <ear2:debug-appclient args="-client ${client.jar} ${j2ee.appclient.tool.args} ${j2ee.appclient.mainclass.tool.param} ${application.args.param}" mainclass="${j2ee.appclient.tool.mainclass}"/>
+    </target>
+    <target if="j2ee.clientName" name="-debug-java-KesinekApplicationLayer" unless="j2ee.appclient.mainclass.args">
+        <ear2:debug-appclient args="${application.args.param}" classpath="${jar.content.additional}" mainclass="${main.class}"/>
+    </target>
     <!--
     CLEANUP SECTION
     -->
     <target depends="init" name="deps-clean" unless="no.deps">
+        <condition property="build.deploy.on.save" value="false">
+            <not>
+                <isset property="build.deploy.on.save"/>
+            </not>
+        </condition>
+        <ant antfile="${project.KesinekApplicationLayer}/build.xml" inheritall="false" target="clean-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
+        </ant>
         <condition property="build.deploy.on.save" value="false">
             <not>
                 <isset property="build.deploy.on.save"/>

@@ -9,7 +9,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import kesinek.businesslayer.entities.Category;
-import kesinek.businesslayer.session.BasketBeanLocal;
 import kesinek.businesslayer.session.CategoryBeanLocal;
 
 /**
@@ -18,17 +17,16 @@ import kesinek.businesslayer.session.CategoryBeanLocal;
  */
 public class CategoryBean {
     // Init
+
     @EJB
     private CategoryBeanLocal categoryBean;
-    @EJB
-    private BasketBeanLocal basketBean;
     private Category category = new Category();
     private int id;
 
     // Actions
     public void newCategory() {
         categoryBean.addCategory(category);
-        FacesContext.getCurrentInstance().addMessage("newCategory", new FacesMessage("Category " + category.getName() + " created." ));
+        FacesContext.getCurrentInstance().addMessage("newCategory", new FacesMessage("Category " + category.getName() + " created."));
         this.category = new Category();
     }
 
@@ -37,19 +35,20 @@ public class CategoryBean {
     }
 
     public void editCategory() {
-        System.out.println(category.getCategoryID() +" " + category.getDescription()  + " " + category.getName());
+        System.out.println(category.getCategoryID() + " " + category.getDescription() + " " + category.getName());
         categoryBean.updateCategory(category);
-        FacesContext.getCurrentInstance().addMessage("newCategory", new FacesMessage("Category " + category.getName() + " edited." ));
+        FacesContext.getCurrentInstance().addMessage("newCategory", new FacesMessage("Category " + category.getName() + " edited."));
         this.category = new Category();
     }
 
     public void deleteCategory() {
         category = categoryBean.findCategoryByID(id);
         categoryBean.removeCategory(category);
-        FacesContext.getCurrentInstance().addMessage("categoryList", new FacesMessage("Category " + category.getName() + " deleted." ));
+        FacesContext.getCurrentInstance().addMessage("categoryList", new FacesMessage("Category " + category.getName() + " deleted."));
         this.category = new Category();
     }
     // Getters
+
     public Category getCategory() {
         return category;
     }
@@ -70,12 +69,4 @@ public class CategoryBean {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String test() {
-        basketBean.test();
-
-        return "index";
-    }
-
-
 }

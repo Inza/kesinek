@@ -65,7 +65,7 @@
 
                 <rich:spacer height="10" />
                 <h:panelGrid id="pnl" style="width:100%">
-                    <% if (pageContext.getRequest().getParameter("state") == null || pageContext.getRequest().getParameter("state").equals("new")) {%>
+                    <% if (request.getParameter("state") == null || request.getParameter("state").equals("new")) {%>
                     <h:form id="newManufacturer">
                         <rich:panel>
                             <f:facet name="header">
@@ -80,7 +80,7 @@
                         </rich:panel>
                     </h:form>
                     <% } else {
-                            if (pageContext.getRequest().getParameter("state").equals("edit")) {%>
+                            if (request.getParameter("state").equals("edit")) {%>
                     <h:form id="editManufacturer">
                         <rich:panel>
                             <f:facet name="header">
@@ -102,7 +102,7 @@
                 </h:panelGrid>
                 <rich:spacer height="10" />
 
-                <h:form>
+                <h:form id="manufacturerList">
                     <rich:panel>
                         <f:facet name="header">
                             <h:outputText value="Manufacturer List" />

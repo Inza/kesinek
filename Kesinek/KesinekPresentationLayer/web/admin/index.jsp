@@ -26,10 +26,18 @@
                     <f:facet name="header">
                         <h:outputText value="Kesinek Administration" />
                     </f:facet>
-                    <h:commandLink action="category" value="Category Managment" />
-                    <h:commandLink action="#{categoryBean.test}" value="Test" />
+                    <h:commandLink action="category" value="Categories Managment" />
+                    <br />
+                    <h:commandLink action="categoryAttribute" value="Category Attributes Managment" />
                     <br />
                     <h:commandLink action="manufacturer" value="Manufacturers Managment" />
+                    <br />
+                    <h:commandLink action="warehouse" value="Warehouses Managment" />
+                    <br />
+                    <h:commandLink action="user" value="Users Managment" />
+                    <br />
+                    <h:commandLink action="#{EventBean.startTimer}" value="Start timer" rendered="#{! EventBean.running}" />
+                    <h:commandLink action="#{EventBean.stopTimer}" value="Stop timer" rendered="#{EventBean.running}" />
                 </rich:panel>
             </h:form>
         </body>
